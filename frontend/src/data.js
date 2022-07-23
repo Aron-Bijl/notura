@@ -1,0 +1,96 @@
+const data = {
+    recipeCard: [
+        {
+            title: "Delicious Fancy Glazed Blueberry Donuts",
+            slug: "delicious-fancy-glazed-blueberry-donuts",
+            category: "Sweets",
+            type: "Dessert",
+            image: "/images/menus/menu84.jpg",
+            author: "Hanna Bijl",
+            imgAuthor: "/images/avatars/avatar12.png",
+            prepTime: 90,
+            hardness: "Simple",
+            origin: "Mexico Cuisine",
+            allergies: ["Sugar"],
+            diet: "Vegaterian",
+            likes: 2
+        },
+        {
+            title: "Pan Fried Cod in Creamy Kale Sauce",
+            slug: "pan-fried-cod-in-creamy-kale-sauce",
+            category: "Meat",
+            type: "Dinner",
+            image: "/images/menus/menu85.jpg",
+            author: "Tricia Albert",
+            imgAuthor: "/images/avatars/avatar12.png",
+            prepTime: 90,
+            hardness: "Simple",
+            origin: "Mexico Cuisine",
+            allergies: ["Sugar"],
+            diet: "Paleo",
+            likes: 2
+        },
+        {
+            title: "Berry Maddness Biscuts",
+            slug: "berry-maddness-biscuts",
+            category: "Sweets",
+            type: "Dessert",
+            image: "/images/menus/menu86.jpg",
+            author: "Tricia Albert",
+            imgAuthor: "/images/avatars/avatar12.png",
+            prepTime: 120,
+            hardness: "Hard",
+            origin: "American Cuisine",
+            allergies: ["Sugar"],
+            diet: "Vegaterian",
+            likes: 0
+        },
+        {
+            title: "Four Ingredient Oatmeal Pancakes",
+            slug: "four-ingredient-oatmeal-pancakes",
+            category: "Sweets",
+            type: "Dessert",
+            image: "/images/menus/menu87.jpg",
+            author: "Tricia Albert",
+            imgAuthor: "/images/avatars/avatar12.png",
+            prepTime: 30,
+            hardness: "Simple",
+            origin: "American Cuisine",
+            allergies: ["Sugar"],
+            diet: "Vegan",
+            likes: 1
+        },
+        {
+            title: "Pumpkin Marshmallow Pie and Nuts",
+            slug: "pumpkin-marshmallow-pie-and-nuts",
+            category: "Sweets",
+            type: "Dessert",
+            image: "/images/menus/menu88.jpg",
+            author: "Tricia Albert",
+            imgAuthor: "/images/avatars/avatar12.png",
+            prepTime: 30,
+            hardness: "Simple",
+            origin: "France Cuisine",
+            allergies: ["Dairy", "Sugar"],
+            diet: "Vegaterian",
+            likes: 0
+        },
+        {
+            title: "Mighty Cheesy Breakfast Burger",
+            slug: "mighty-cheesy-breakfast-burger",
+            category: "Complex",
+            type: "Lunch",
+            image: "/images/menus/menu89.jpg",
+            author: "Tricia Albert",
+            imgAuthor: "/images/avatars/avatar12.png",
+            prepTime: 30,
+            hardness: "Simple",
+            origin: "American Cuisine",
+            allergies: ["Mustard"],
+            diet: "Keto",
+            likes: 2
+        },
+    ]
+}
+
+export default data;
