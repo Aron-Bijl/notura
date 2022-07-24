@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useReducer, useState  } from "react";
 import '../App.css';
 import axios from "axios";
 import { Store } from "../Store";
+import { Link } from "react-router-dom";
 
 const reducer =  (state, action) => {
     switch(action.type){
@@ -171,7 +172,7 @@ function RecipeCardsCat() {
                             (<h5>Right now we do not have recipes in this category</h5>) 
                             : (categorySelect().map(recipe => (
                                 <figure key={recipe.slug} className="card col-md-4 col-xl-4">
-                                <a href={`/recipe/${recipe.slug}`} className="animation rounded-top"><img className="w-100" src={recipe.image} alt={recipe.name} /></a>
+                                <Link href={`/recipe/${recipe.slug}`} className="animation rounded-top"><img className="w-100" src={recipe.image} alt={recipe.name} /></Link>
                                 <figcaption className="border-card rounded-bottom border-top">
                                 <div className="pt-3 pb-4 px-4">
                                     <a href={`/recipe/${recipe.slug}`}><h5 className="mb-0 title-height">{recipe.title}</h5></a>

@@ -3,6 +3,7 @@ import React, { useEffect, useReducer, useState  } from "react";
 import '../App.css';
 import axios from "axios";
 import { Button } from "./Button";
+import { Link } from "react-router-dom";
 
 const reducer =  (state, action) => {
     switch(action.type){
@@ -60,10 +61,10 @@ function LatestRecipes() {
                     { recipeCards.slice(0, cards).map(recipe => (
                         <div className="col-md-4 col-xl-4 col-lg-3 col-6">
                             <figure key={recipe.slug} className="card ">
-                            <a href={`/recipe/${recipe.slug}`} className="animation rounded"><img className="small-thumbNail" src={recipe.image} alt={recipe.name} /></a>
+                            <Link to={`/recipe/${recipe.slug}`} className="animation rounded"><img className="small-thumbNail" src={recipe.image} alt={recipe.name} /></Link>
                             <figcaption className="rounded-bottom border-top">
                             <div className="pb-4 ">
-                                <a href={`/recipe/${recipe.slug}`}><h5 className="mb-0 title-height">{recipe.title}</h5></a>
+                                <Link to={`/recipe/${recipe.slug}`}><h5 className="mb-0 title-height">{recipe.title}</h5></Link>
                             </div>
                             </figcaption>
                             </figure>
