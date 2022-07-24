@@ -151,6 +151,7 @@ function RecipeCardsCat() {
             <div className="container">
                 <section className="my-4">
                 <div className="column">
+
                 { !loadingSetting && !loadingSetCat ? (<select name="category"  value={category} onChange={(e) => setCategory(e.target.value)} className="select-title">
                             {possibleCat.map((val) => {
                                 return (
@@ -172,10 +173,10 @@ function RecipeCardsCat() {
                             (<h5>Right now we do not have recipes in this category</h5>) 
                             : (categorySelect().map(recipe => (
                                 <figure key={recipe.slug} className="card col-md-4 col-xl-4">
-                                <Link href={`/recipe/${recipe.slug}`} className="animation rounded-top"><img className="w-100" src={recipe.image} alt={recipe.name} /></Link>
+                                <Link to={`/recipe/${recipe.slug}`} className="animation rounded-top"><img className="w-100" src={recipe.image} alt={recipe.name} /></Link>
                                 <figcaption className="border-card rounded-bottom border-top">
                                 <div className="pt-3 pb-4 px-4">
-                                    <a href={`/recipe/${recipe.slug}`}><h5 className="mb-0 title-height">{recipe.title}</h5></a>
+                                    <Link to={`/recipe/${recipe.slug}`}><h5 className="mb-0 title-height">{recipe.title}</h5></Link>
                                 </div>
                                 </figcaption>
                                 </figure>
