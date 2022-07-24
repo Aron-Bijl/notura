@@ -34,10 +34,10 @@ adminRouter.get(
 );
 
 
-const __dirname = path.resolve();
+const __dirname = path.resolve(); 
 
 const DB_NAME = "notura-recipies";
-const ARCHIVE_PATH = path.join(__dirname, "./backup", `${DB_NAME + "-" + Date.now()}.gzip`);
+const ARCHIVE_PATH = path.join(__dirname, "../backups", `${DB_NAME + "-" + Date.now()}.gzip`);
 
 adminRouter.get(
     '/backup',
@@ -73,7 +73,7 @@ adminRouter.get(
 );
 
 import fs from "fs";
-const DIRECTORY_PATH = path.join(__dirname, "./backup");
+const DIRECTORY_PATH = path.join(__dirname, "../backups");
 
 
 function getLatestFile(dirpath) {
@@ -106,7 +106,7 @@ function getLatestFile(dirpath) {
   }
 
 const RESTORE_FILE_NAME = getLatestFile(DIRECTORY_PATH);
-const RESTORE_PATH = path.join(__dirname, "./backup", RESTORE_FILE_NAME);
+const RESTORE_PATH = path.join(__dirname, "../backups", RESTORE_FILE_NAME);
 
 adminRouter.get(
     '/restore',
