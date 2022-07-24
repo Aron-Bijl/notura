@@ -4,7 +4,9 @@ import { isAdmin, isAuth } from "../utils.js";
 import sharp from "sharp";
 import fs from "fs"; 
 import path from 'path';
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
+
+const __dirname = "../images";
 
 const uploadThumbnailRouter = express.Router();
 
@@ -30,7 +32,7 @@ uploadThumbnailRouter.post(
         //const fullName = `Thumbnail-${Date.now()}.${parts[1]}`;
         const fullName = `Thumbnail-${req.body.id}.jpeg`;
         req.file.name = fullName;
-        fs.access("./thumbnail", (err) => {
+        fs.access("../images/thumbnail", (err) => {
             if(err){
                 fs.mkdirSync("./thumbnail")
             }
@@ -56,8 +58,8 @@ uploadThumbnailRouter.post(
                 height: 263
             })
             .toFormat("jpeg")
-            .toFile(`./thumbnail/${req.file.name}`);
-            res.send(`/thumbnail/${req.file.name}`);
+            .toFile(`../images/thumbnail/${req.file.name}`);
+            res.send(`/images/thumbnail/${req.file.name}`);
         }catch(err){
             res.send(err);
         }

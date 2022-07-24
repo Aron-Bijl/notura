@@ -6,6 +6,7 @@ import TimeIcon from "./icons/TimeIcon";
 import SwapIcon from "./icons/SwapIcon";
 import ForkKnifeIcon from "./icons/ForkKnifeIcon";
 import BreadIcon from "./icons/BreadIcon";
+import { Link } from "react-router-dom";
 
 const reducer =  (state, action) => {
     switch(action.type){
@@ -57,12 +58,13 @@ function RecipeCard() {
                         <div><h5>{error}</h5></div>
                     ) : (
                     <>
-                    { recipeCards.slice(random, nextBreakPoint).map(recipe => (
+                    { recipeCards.slice(random, nextBreakPoint).map((recipe) => ( 
+                        <>
                             <figure key={recipe.slug} className="card col-md-4 col-xl-4">
-                            <a href={`/recipe/${recipe.slug}`} className="animation rounded-top"><img className="w-100" src={recipe.image} alt={recipe.name} /></a>
+                            <Link to={`recipe/${recipe.slug}`} className="animation rounded-top"> <img className="w-100" src={recipe.image} alt={recipe.name} />  </Link>
                             <figcaption className="border-card rounded-bottom border-top">
                             <div className="pt-3 pb-4 px-4">
-                                <a href={`/recipe/${recipe.slug}`}><h5 className="mb-0 title-height">{recipe.title}</h5></a>
+                            <Link to={`recipe/${recipe.slug}`}><h5 className="mb-0 title-height">{recipe.title}</h5></Link>
                                 <div className="mt-3 avatar">
                                 <img className="rounded-circle" src={recipe.imgAuthor} alt={recipe.author} />
                                 <p>{recipe.author}</p>
@@ -80,7 +82,7 @@ function RecipeCard() {
                             </div>
                             </figcaption>
                             </figure>
-                        )) }
+                        </>)) }
                     </>)
                 }
                 </div>

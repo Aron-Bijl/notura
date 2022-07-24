@@ -4,7 +4,9 @@ import { isAuth } from "../utils.js";
 import sharp from "sharp";
 import fs from "fs"; 
 import path from 'path';
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
+
+const __dirname = "../images";
 
 const uploadAvatarRouter = express.Router();
 
@@ -20,6 +22,7 @@ const fileFilter = (req, file, cb) => {
 
 const upload = multer({ storage: storage, fileFilter: fileFilter });
 
+
 uploadAvatarRouter.post(
     '/',
     isAuth,
@@ -29,25 +32,30 @@ uploadAvatarRouter.post(
         //const fullName = `Avatar-${Date.now()}.${parts[1]}`;
         const fullName = `Avatar-${req.user._id}.jpeg`;
         req.file.name = fullName;
-        fs.access("./avatar", (err) => {
+        fs.access("../images/avatars", (err) => {
             if(err){
-                fs.mkdirSync("./avatar")
+                fs.mkdirSync("../images/avatars")
             }
-        })
+        }) 
         try{
             //find and delete previous thumnail or go to next step
-            const PATH = path.join(__dirname, "./avatar", fullName);
-            const DIR = __dirname + "/avatar";
+            const PATH = path.join(__dirname, "./avatars", fullName);
+            const DIR = __dirname + "/avatars";
+
+            console.log(DIR);
 
             const files = fs.readdirSync(DIR);
             const exists = files.filter(filename => {
                 if (filename === fullName) return fullName;
             });
+
             if(exists[0] === fullName){
+                console.log("File already exists, I will delete the existing file and write the a one, that you have provided me");
                 fs.unlink(PATH,(err) => {
                     if(err) throw err;
                 });
-            }
+            } 
+
             // create new thumbnail
             await sharp(req.file.buffer)
             .resize({
@@ -55,12 +63,13 @@ uploadAvatarRouter.post(
                 height: 130
             })
             .toFormat("jpeg")
-            .toFile(`./avatar/${req.file.name}`);
-            res.send(`/avatar/${req.file.name}`);
+            .toFile(`../images/avatars/${req.file.name}`);
+            res.send(`/images/avatars/${req.file.name}`); 
+
         }catch(err){
             res.send(err);
         }
     }
-);
+); 
 
 export default uploadAvatarRouter;

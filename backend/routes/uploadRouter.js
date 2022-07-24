@@ -48,7 +48,9 @@ import { isAdmin, isAuth } from "../utils.js";
 import sharp from "sharp";
 import fs from "fs"; 
 import path from 'path';
-const __dirname = path.resolve();
+// const __dirname = path.resolve();
+
+const __dirname = "../images";
 
 const uploadRouter = express.Router();
 
@@ -74,9 +76,9 @@ uploadRouter.post(
         //const fullName = `Thumbnail-${Date.now()}.${parts[1]}`;
         const fullName = `Cover-${req.body.id}.jpeg`;
         req.file.name = fullName;
-        fs.access("./covers", (err) => {
+        fs.access("../images/covers", (err) => {
             if(err){
-                fs.mkdirSync("./thumbnail")
+                fs.mkdirSync("../images/covers")
             }
         })
         try{
@@ -93,15 +95,15 @@ uploadRouter.post(
                      if(err) throw err;
                  });
              }
-             // create new thumbnail
+             // create new cover
             await sharp(req.file.buffer)
             .resize({
                 width: 1110,
                 height: 624
             })
             .toFormat("jpeg")
-            .toFile(`./covers/${req.file.name}`);
-            res.send(`/covers/${req.file.name}`);
+            .toFile(`../images/covers/${req.file.name}`);
+            res.send(`/images/covers/${req.file.name}`);
         }catch(err){
             res.send(err);
         }
