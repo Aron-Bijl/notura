@@ -6,8 +6,9 @@ const data = {
             name: "Aron Bijl",
             email: "aron.bijl@me.com",
             password: bcrypt.hashSync('1234'),
-            imgAuthor: "/avatar/Avatar-62dc3de78dffb89fb708fc22.jpeg",
+            imgAuthor: "/images/avatars/Avatar-62ddcb4e0170fbe981372a48.jpeg",
             isAdmin: true,
+            settings: "Sweets",
         },
         {
             name: "Hanna Bijl",
@@ -15,6 +16,7 @@ const data = {
             password: bcrypt.hashSync('1234'),
             imgAuthor: "/images/avatars/Avatar-62dc7badd3baf2dea27ad6bb.jpeg",
             isAdmin: true,
+            settings: "Sweets",
         },
     ],
     recipies: [
