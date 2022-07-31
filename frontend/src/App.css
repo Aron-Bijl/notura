@@ -966,11 +966,13 @@ li {
   border: none;
   min-height: 48px;
   padding-left: 0rem;
-  font-size: 14px;
+  font-size: 2rem;
   color: #7F7F7F;
   font-weight: 400;
   border-bottom: 2px solid #E8E8E8;
   min-width: 9rem;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
 }
 
 .form-group .form-control:focus {
@@ -1038,6 +1040,7 @@ select.drop-down{
   border-radius: 0.25rem;
   border: none;
   cursor: pointer;
+  width: 100%;
 }
 
 /* padding-left: 5rem;  for other form inputs*/
@@ -1200,13 +1203,13 @@ input[type="checkbox"] {
 .unit-group{
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 
 .button-group{
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 16rem;
 }
 
 @media (max-width: 576px) {
@@ -1227,8 +1230,19 @@ input[type="checkbox"] {
 
 .nutrition-fact-row{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  flex-direction: row;
   align-items: center;
+}
+
+@media (max-width: 768px){
+  .nutrition-fact-row{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+  }
 }
 
 /* Table styling */
@@ -1346,6 +1360,7 @@ tbody tr:nth-child(even) {
   display: flex;
   flex-direction: column; 
   align-items: center;
+  text-align: center;
 }
 
 .category-thumbNail{
@@ -1362,23 +1377,49 @@ tbody tr:nth-child(even) {
   object-position: 25% 25%; 
 }
 
+@media (max-width: 375px) {
+  .category-item{
+    width: 6rem;
+  }
+
+  .category-thumbNail{
+    height: 6rem;
+    object-fit: cover;
+    object-position: 25% 25%; 
+  }
+}
+
 @media (min-width: 375px) {
+  .category-item{
+    width: 8rem;
+  }
+
   .category-thumbNail{
-    width: 7rem;
-    height: 7rem;
+    width: 8rem;
+    height: 8rem;
     object-fit: cover;
     object-position: 25% 25%; 
   }
 }
+
 @media (min-width: 576px) {
+  .category-item{
+    width: 12rem;
+  }
+
   .category-thumbNail{
-    width: 10rem;
-    height: 10rem;
+    width: 12rem;
+    height: 12rem;
     object-fit: cover;
     object-position: 25% 25%; 
   }
 }
+
 @media (min-width: 768px) {
+  .category-item{
+    width: 15rem;
+  }
+
   .category-thumbNail{
     width: 15rem;
     height: 15rem;
@@ -1387,6 +1428,10 @@ tbody tr:nth-child(even) {
   }
 }
 @media (min-width: 992px) {
+  .category-item{
+    width: 20rem;
+  }
+
   .category-thumbNail{
     width: 20rem;
     height: 20rem;
@@ -1395,6 +1440,10 @@ tbody tr:nth-child(even) {
   }
 }
 @media (min-width: 1200px) {
+  .category-item{
+    width: 25rem;
+  }
+
   .category-thumbNail{
     width: 25rem;
     height: 25rem;
@@ -1403,6 +1452,10 @@ tbody tr:nth-child(even) {
   }
 }
 @media (min-width: 1400px) {
+  .category-item{
+    width: 30rem;
+  }
+
   .category-thumbNail{
     width: 30rem;
     height: 30rem;
@@ -1616,6 +1669,7 @@ tbody tr:nth-child(even) {
 /* Notura Footer CSS */
 .notura-footer h6.caption, .notura-footer .caption.h6 {
   cursor: pointer; 
+  padding-top: 5rem;
 }
 
 caption, .caption {

@@ -26,9 +26,9 @@ class Navbar extends Component {
                     </ul>
                     <div className='search-login'>
                         <Link to="/login"><Button>Login</Button></Link>
-                        <div className='menu-icon' onClick={this.handleClick}>
+                        {/*<div className='menu-icon' onClick={this.handleClick}>
                             <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
-                        </div>
+                        </div> */}
                         <SearchBar/>
                     </div>
                 </div>

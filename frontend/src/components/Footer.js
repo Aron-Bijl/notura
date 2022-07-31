@@ -13,7 +13,7 @@ export default function Footer () {
                     <a href="/">
                     <h3>Notura</h3>
                     </a>
-                    <p class="mt-3 pe-0 pe-lg-5 me-0 me-lg-4">"On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment</p>
+                    <p class="mt-3 pe-0 pe-lg-5 me-0 me-lg-4">A recipe App that exists solely for the pleasures of your mouth.</p>
                 </div>
                 </div>
                 <div class="col-md-2">

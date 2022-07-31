@@ -626,13 +626,15 @@ export default function ProductEditScreen () {
                                             return (
                                                 <>
                                                  <div className="checkbox-container" key={index}>
-                                                    <input 
+                                                    <textarea 
                                                         key={"instruction"-index}
                                                         name="instructions"
                                                         placeholder={val}
                                                         className="form-control"
                                                         value={val}
                                                         onChange={ event => onInstructionChange(index, event)}
+                                                        type="text"
+                                                        rows="3"
                                                     />
                                                     <div className="button-group">
                                                         <Button buttonStyle="btn" buttonSize="btn-medium" onClick={event => removeInstruction(index, event)}>-</Button>
@@ -648,32 +650,39 @@ export default function ProductEditScreen () {
                                   {nutritionFacts.map((val, index) => {
                                             return (
                                                 <div className="nutrition-fact-row">
-                                                    <select key={"unit-"+index} name="type"  value={val.nutrition} onChange={(e) => setNutrition(index, e.target.value)} className="drop-down px-4">
-                                                        {nutritions.map((nutrition) => {
-                                                        return (
-                                                            <option value={checkItem(nutrition, nutritions)}>{nutrition}</option>
-                                                        )
-                                                        })}
-                                                    </select>  
-                                                    <input 
-                                                        type="number" 
-                                                        key={"nutAmount-"+index}
-                                                        name="nutrition"
-                                                        className="form-control px-4"
-                                                        value={val.amount}
-                                                        onChange={ (e) => onNutAmountChange(index, e.target.value)}
-                                                    />
-                                                    <select key={"nutUnit-"+index} name="type"  value={val.unit} onChange={(e) => setNutUnit(index, e.target.value)} className="drop-down px-4">
-                                                                    {units.map((unit) => {
-                                                                        return (
-                                                                            <option value={checkItem(unit, units)}>{unit}</option>
-                                                                        )
-                                                                    })}
-                                                    </select>   
-                                                    <div className="button-group">
-                                                                <Button buttonStyle="btn" buttonSize="btn-medium" onClick={event => removeNutFact(index, event)}>-</Button>
-                                                                <Button buttonStyle="btn" buttonSize="btn-medium" onClick={event => addNutFact(index, event)}>+</Button>
-                                                    </div>
+                            
+                                                        <select key={"unit-"+index} name="type"  value={val.nutrition} onChange={(e) => setNutrition(index, e.target.value)} className="drop-down px-4">
+                                                            {nutritions.map((nutrition) => {
+                                                            return (
+                                                                <option value={checkItem(nutrition, nutritions)}>{nutrition}</option>
+                                                            )
+                                                            })}
+                                                        </select>  
+                                 
+                                                        <div className="unit-group">
+                                                        <input 
+                                                            type="number" 
+                                                            key={"nutAmount-"+index}
+                                                            name="nutrition"
+                                                            className="form-control px-4"
+                                                            value={val.amount}
+                                                            onChange={ (e) => onNutAmountChange(index, e.target.value)}
+                                                        />
+                                                    
+                                                        <select key={"nutUnit-"+index} name="type"  value={val.unit} onChange={(e) => setNutUnit(index, e.target.value)} className="drop-down px-4">
+                                                                        {units.map((unit) => {
+                                                                            return (
+                                                                                <option value={checkItem(unit, units)}>{unit}</option>
+                                                                            )
+                                                                        })}
+                                                        </select>   
+                                                        </div>
+                                                   
+                                                        <div className="button-group">
+                                                            <Button buttonStyle="btn" buttonSize="btn-medium" onClick={event => removeNutFact(index, event)}>-</Button>
+                                                            <Button buttonStyle="btn" buttonSize="btn-medium" onClick={event => addNutFact(index, event)}>+</Button>
+                                                        </div>
+                                                 
                                                 </div>
                                             )})
                                   }

@@ -8,8 +8,6 @@
     background-color: #FFFFFF;
     height: 80px;
     display: flex;
-    justify-content: center;
-    align-items: center;
     font-size: 1.8rem;
     z-index: 999;
     position: fixed;
@@ -288,4 +286,15 @@ logo{
     justify-content: center;
     align-items: center;
     margin-left: 1rem;
+}
+
+@media (max-width: 576px){
+    .search-icon{
+        background-color: transparent;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: 1rem;
+    }
 }

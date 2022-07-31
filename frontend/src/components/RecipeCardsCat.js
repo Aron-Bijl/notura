@@ -158,7 +158,7 @@ function RecipeCardsCat() {
                                     <option value={checkItem(val, possibleCat)}>{val}</option>
                                 )
                                 })}
-                    </select>) : (<h5>Loading</h5>) }  
+                    </select>) : (<></>) }  
                 </div>
                 <>
                 {userInfo ? (<>

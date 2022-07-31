@@ -34,11 +34,16 @@ adminRouter.get(
 );
 
 
-const __dirname = path.resolve(); 
+/* const __dirname = path.resolve(); */
 
-const DB_NAME = "notura-recipies";
-const ARCHIVE_PATH = path.join(__dirname, "../backups", `${DB_NAME + "-" + Date.now()}.gzip`);
+const __dirname = "../";
+//const __dirname = "./";
 
+const DB_NAME = "notura-recipes";
+
+const ARCHIVE_PATH = path.join(__dirname, "./backups", `${DB_NAME + "-" + Date.now()}.gzip`);
+//const ARCHIVE_PATH = path.join(__dirname, "./notura/backups", `${DB_NAME + "-" + Date.now()}.gzip`);
+//mongodump  --archive=./notura/backups/notura-recipies-1658732825280.gzip --db=notura --gzip
 adminRouter.get(
     '/backup',
     isAuth,
@@ -73,7 +78,8 @@ adminRouter.get(
 );
 
 import fs from "fs";
-const DIRECTORY_PATH = path.join(__dirname, "../backups");
+const DIRECTORY_PATH = path.join(__dirname, "./backups"); 
+//const DIRECTORY_PATH = path.join(__dirname, "./notura/backups");
 
 
 function getLatestFile(dirpath) {
@@ -106,7 +112,7 @@ function getLatestFile(dirpath) {
   }
 
 const RESTORE_FILE_NAME = getLatestFile(DIRECTORY_PATH);
-const RESTORE_PATH = path.join(__dirname, "../backups", RESTORE_FILE_NAME);
+const RESTORE_PATH = path.join(__dirname, "./backups", RESTORE_FILE_NAME);
 
 adminRouter.get(
     '/restore',

@@ -34,9 +34,6 @@ app.use('/api/users', userRouter);
 app.use('/api/admin', adminRouter);
 
 const __dirname = path.resolve();
-// app.use('/covers', express.static(path.join(__dirname, '/covers')));
-// app.use('/thumbnail', express.static(path.join(__dirname, '/thumbnail')));
-// app.use('/avatar', express.static(path.join(__dirname, '/avatar')));
 app.use('/images/avatars', express.static(path.join(__dirname, '../images/avatars')));
 app.use('/images/covers', express.static(path.join(__dirname, '../images/covers')));
 app.use('/images/thumbnail', express.static(path.join(__dirname, '../images/thumbnail')));
