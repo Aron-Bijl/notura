@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
 import React, { useContext, useEffect, useReducer, useState  } from "react";
-import '../App.css';
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
 import Bookmark from "../components/Bookmark.js";

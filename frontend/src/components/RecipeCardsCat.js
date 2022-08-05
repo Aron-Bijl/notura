@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useReducer, useState  } from "react";
 //import data from "../data";
-import '../App.css';
 import axios from "axios";
 import { Store } from "../Store";
 import { Link } from "react-router-dom";

@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer  } from "react";
 //import data from "../data";
-import '../App.css';
 import axios from "axios";
 import TimeIcon from "./icons/TimeIcon";
 import SwapIcon from "./icons/SwapIcon";

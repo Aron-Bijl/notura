@@ -149,6 +149,7 @@ export default function RecipeListScreen(){
                 <title>{userInfo.name} Recipes</title>
             </Helmet>
             <h3>Recipes</h3>
+            <Button type='button' buttonSize="btn-large" onClick={createHandler}>Create recipe</Button>
             { loadingCreate && <div><h5>Cooking a new recipe... </h5></div> }
             { loadingDelete && <div><h5>Trying to delete recipe... </h5></div> }
             { loading ? (<div><h5>Loading your recipe list... </h5></div>
@@ -197,7 +198,7 @@ export default function RecipeListScreen(){
                                     {x + 1}
                                 </Link>
                             ))}
-                            <Button type='button' buttonSize="btn-large" onClick={createHandler}>Create recipe</Button>
+                         
                         </div>
                      </>
             )}

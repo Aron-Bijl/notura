@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer, useState  } from "react";
 //import data from "../data";
-import '../App.css';
 import axios from "axios";
 import { Button } from "./Button";
 import { Link } from "react-router-dom";

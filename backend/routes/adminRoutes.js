@@ -36,23 +36,30 @@ adminRouter.get(
 
 /* const __dirname = path.resolve(); */
 
-//const __dirname = "../";
-const __dirname = "./";
+const __dirname = "../";
+//const __dirname = "/root";
 
-const DB_NAME = "notura-recipes";
+const DB_NAME = "notura-db";
 
-//const ARCHIVE_PATH = path.join(__dirname, "./backups", `${DB_NAME + "-" + Date.now()}.gzip`);
-const ARCHIVE_PATH = path.join(__dirname, "./notura/backups", `${DB_NAME + "-" + Date.now()}.gzip`);
-//mongodump  --archive=./notura/backups/notura-recipies-1658732825280.gzip --db=notura --gzip
+const ARCHIVE_PATH = path.join(__dirname, "./backups", `${DB_NAME + "-" + Date.now()}.gz`);
+//const ARCHIVE_PATH = path.join(__dirname, "./notura/backups", `${DB_NAME + "-" + Date.now()}.gz`);
+
+//mongodump --uri="mongodb://localhost:27017"  --db="notura-recipies" --out=/Users/aron/Desktop/code/backups/ -v
+//mongodump --uri="mongodb://localhost:27017"  --db="notura-recipies" --gzip --archive=/Users/aron/Desktop/code/backups/notura-db.gz
+
+const DBConnection = "mongodb://localhost:27017";
+
 adminRouter.get(
     '/backup',
     isAuth,
     isAdmin,
     expressAsyncHandler(async (req, res) => {
+        console.log(DBConnection);
         const child = spawn('mongodump',[
-            `--archive=${ARCHIVE_PATH}`,
+            `--uri=${DBConnection}`,
             `--db=${DB_NAME}`,
-            `--gzip`
+            `--gzip`,
+            `--archive=${ARCHIVE_PATH}`,
         ]);
     
         child.stdout.on("data", (data) => {
@@ -78,8 +85,8 @@ adminRouter.get(
 );
 
 import fs from "fs";
-//const DIRECTORY_PATH = path.join(__dirname, "./backups"); 
-const DIRECTORY_PATH = path.join(__dirname, "./notura/backups");
+const DIRECTORY_PATH = path.join(__dirname, "./backups"); 
+//const DIRECTORY_PATH = path.join(__dirname, "./notura/backups");
 
 
 function getLatestFile(dirpath) {
@@ -111,20 +118,30 @@ function getLatestFile(dirpath) {
     return latest.filename;
   }
 
-const RESTORE_FILE_NAME = getLatestFile(DIRECTORY_PATH);
-// const RESTORE_PATH = path.join(__dirname, "./backups", RESTORE_FILE_NAME);
-const RESTORE_PATH = path.join(__dirname, "./notura/backups", RESTORE_FILE_NAME);
+let RESTORE_FILE_NAME = getLatestFile(DIRECTORY_PATH);
+let RESTORE_PATH = path.join(__dirname, "backups", RESTORE_FILE_NAME);
+//const RESTORE_PATH = path.join(__dirname, "./notura/backups", RESTORE_FILE_NAME);
+
+const collection = "*";
 
 adminRouter.get(
     '/restore',
     isAuth,
     isAdmin,
     expressAsyncHandler(async (req, res) => {
-        //mongorestore --gzip --db=notura-recipies   --archive=/Users/aron/Desktop/code/backend/backup/notura-recipies-1657870628468.gzip --drop
-        //mongorestore --gzip --drop --nsInclude=noture-recipes --archive=/Users/aron/Desktop/code/backend/backup/notura-recipies-1657870628468.gzip
+
+        //mongorestore --gzip --drop --nsInclude=noture-db --archive=/root/notura/backups/notura-db.gz
+
+        //mongorestore --drop /Users/aron/Desktop/code/backups/ -v
+        //mongorestore --drop --gzip --nsInclude="*" --archive=/Users/aron/Desktop/code/backups/notura-db.gz -v    
+        
+       RESTORE_FILE_NAME = getLatestFile(DIRECTORY_PATH);
+       RESTORE_PATH = path.join(__dirname, "backups", RESTORE_FILE_NAME);
+
        const child = spawn("mongorestore",[
-            '--gzip',
             '--drop',
+            '--gzip',
+            `--nsInclude=${collection}`,
             `--archive=${RESTORE_PATH}`,
         ]); 
     
@@ -142,7 +159,7 @@ adminRouter.get(
             if(code) console.log("Process exit with code:", code);
             else if(signal) console.log("Process killed with signal", signal);
             else{ 
-                console.log("Backup successfull"); 
+                console.log("Restore successfull"); 
                 res.status(200).send({ message: "Your data has been restored" });
             }
         })

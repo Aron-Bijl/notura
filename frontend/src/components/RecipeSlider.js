@@ -1,6 +1,5 @@
 import React, { useEffect, useReducer, useState  } from "react";
 //import data from "../data";
-import '../App.css';
 import axios from "axios";
 import ChevronRightIcon from "./icons/ChevronRightIcon";
 import ChevronLeftIcon from "./icons/ChevronLeftIcon";
