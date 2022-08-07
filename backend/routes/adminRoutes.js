@@ -120,7 +120,7 @@ function getLatestFile(dirpath) {
 
 let RESTORE_FILE_NAME = getLatestFile(DIRECTORY_PATH);
 let RESTORE_PATH = path.join(__dirname, "backups", RESTORE_FILE_NAME);
-//const RESTORE_PATH = path.join(__dirname, "./notura/backups", RESTORE_FILE_NAME);
+//let RESTORE_PATH = path.join(__dirname, "./notura/backups", RESTORE_FILE_NAME);
 
 const collection = "*";
 
@@ -130,8 +130,7 @@ adminRouter.get(
     isAdmin,
     expressAsyncHandler(async (req, res) => {
 
-        //mongorestore --gzip --drop --nsInclude=noture-db --archive=/root/notura/backups/notura-db.gz
-
+        //mongorestore --gzip --drop --nsInclude="*" --archive=/root/notura/backups/notura-db-1659606289393.gz
         //mongorestore --drop /Users/aron/Desktop/code/backups/ -v
         //mongorestore --drop --gzip --nsInclude="*" --archive=/Users/aron/Desktop/code/backups/notura-db.gz -v    
         
