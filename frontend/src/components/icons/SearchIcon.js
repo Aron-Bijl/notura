@@ -14,8 +14,8 @@ const SeaarchIcon = (props) => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       
-    <circle fill={fill} stroke-width={stroke} cx="17" cy="17" r="16"/>
-	  <line  fill={fill} stroke-width={stroke} x1="28.3" y1="28.3" x2="47" y2="47"/>
+    <circle fill={fill} strokeWidth={stroke} cx="17" cy="17" r="16"/>
+	  <line  fill={fill} strokeWidth={stroke} x1="28.3" y1="28.3" x2="47" y2="47"/>
     </svg>
     
   )

@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
+import { Link } from "react-router-dom";
 import { Store } from "../Store";
 import BreadIcon from "./icons/BreadIcon";
 import ForkKnifeIcon from "./icons/ForkKnifeIcon";
@@ -37,15 +38,17 @@ function BookmarkedRecipes(){
     useEffect(()=> {
         const fetchData = async () => {
             dispatch({type: 'FETCH_REQUEEST'});
-            try{
-                const result = await axios.get('/api/recipies/bookmarked',
-                {
-                    headers: { Authorization: `Bearer ${userInfo.token}` }
-                });
-                dispatch({type: 'FETCH_SUCCESS', payload: result.data});
-            }
-            catch(err){
-                dispatch({type: 'FETCH_FAIL', payload: err.message});
+            if(userInfo){
+                try{
+                    const result = await axios.get('/api/recipies/bookmarked',
+                    {
+                        headers: { Authorization: `Bearer ${userInfo.token}` }
+                    });
+                    dispatch({type: 'FETCH_SUCCESS', payload: result.data});
+                }
+                catch(err){
+                    dispatch({type: 'FETCH_FAIL', payload: err.message});
+                }
             }
         };
         fetchData();
@@ -65,10 +68,10 @@ function BookmarkedRecipes(){
             <>
             { bookmarked.length > 0 ? (bookmarked.map(recipe => (
                     <figure key={recipe.slug} className="card col-md-4 col-xl-4">
-                    <a href={`/recipe/${recipe.slug}`} className="animation bookmarked-border-card rounded-top"><img className="w-100" src={recipe.image} alt={recipe.name} /></a>
+                    <Link to={`/recipe/${recipe.slug}`} className="animation bookmarked-border-card rounded-top"><img className="w-100" src={recipe.image} alt={recipe.name} /></Link>
                     <figcaption className="bookmarked-border-card rounded-bottom border-top">
                     <div className="pt-3 pb-4 px-4">
-                        <a href={`/recipe/${recipe.slug}`}><h5 className="mb-0 title-height">{recipe.title}</h5></a>
+                        <Link to={`/recipe/${recipe.slug}`}><h5 className="mb-0 title-height">{recipe.title}</h5></Link>
                         <div className="mt-3 avatar">
                         <img className="rounded-circle" src={recipe.imgAuthor} alt={recipe.author} />
                         <p>{recipe.author}</p>

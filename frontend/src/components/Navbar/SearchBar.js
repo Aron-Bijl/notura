@@ -62,12 +62,12 @@ function SearchBar(){
     }
 
     return(
-        <>
+        <React.Fragment>
             <div className="click-icon search-icon" onClick={() =>  setXValue(!xValue)}>
-                <SearchIcon className="" stroke="3" fill="none" width={24} height={24} />
+                <SearchIcon stroke="3" fill="none" width={24} height={24} />
             </div>
             <div className={xValue ? "notura-search active" : "notura-search "}>
-                <div class="container">
+                <div className="container">
                     <div className="input-group form-group search-box mb-0">
                         <div className="form-control-box width-search-box">
                             <input type="text" name="Search" placeholder="Search" value={wordEntered} className="form-control" id="Search" onChange={(e) => handleFilter(e)} />
@@ -103,7 +103,7 @@ function SearchBar(){
                     )
                 }
             </div>
-        </>
+        </React.Fragment>
     )
 }
 

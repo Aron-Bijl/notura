@@ -21,7 +21,7 @@ function NavbarUser() {
         return(
             <nav className='NavbarItems'>
                 <div className="container align">
-                    <Link to={"/"} ><logo className='navbar-logo'> Notura </logo> </Link> 
+                    <Link to={"/"} ><div className='navbar-logo'> Notura </div> </Link> 
                     <ul className={value ? 'nav-menu active' : 'nav-menu'}>
                         {userInfo.isAdmin ? (MenuItemsAdmin.map((item, index) => {
                                 return ( <li key={index}  onClick={() =>  setClick(!value)}><Link className={item.cName} to={item.url}> {item.title} </Link></li> )

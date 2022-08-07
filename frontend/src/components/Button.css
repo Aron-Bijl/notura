@@ -3,8 +3,11 @@
 }
 
 .btn{
-    padding: 12px 20px;
-    border-radius: 20px;
+    padding: 1.2rem 2rem;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     outline: none;
     cursor: pointer;
     color: #1E1E1D;
@@ -12,7 +15,24 @@
     transition: all 0.3s ease-out;
 }
 
-.btn:hover{
+.btn-round{
+    height:  5rem;
+    width: 5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #1E1E1D;
+    border: none;
+    transition: all 0.3s ease-out;
+}
+
+.btn-round-link{
+    border: 1px solid #1E1E1D;
+}
+
+.btn:hover, .btn-round:hover{
     transition: al 0.3 ease-out;
     background: #1E1E1D;
     color: #FFF;

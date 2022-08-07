@@ -13,7 +13,7 @@ const BoookmarkFullIcon = (props) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-    <polygon id="Bookmark"  fill={fill} stroke-width="2" points="37 47 23.5 42 11 47 11 1 37 1 37 47"/>
+    <polygon id="Bookmark"  fill={fill} strokeWidth="2" points="37 47 23.5 42 11 47 11 1 37 1 37 47"/>
     </svg>
   )
 }

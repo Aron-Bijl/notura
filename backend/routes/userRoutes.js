@@ -55,7 +55,7 @@ userRouter.post(
             name: req.body.name,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password),
-            imgAuthor: '/images/avatars/avatar12.png',
+            imgAuthor: "/images/avatars/Avatar-62dc7badd3baf2dea27ad6bb.jpeg",
         });
         const user = await newUser.save();
         res.send({

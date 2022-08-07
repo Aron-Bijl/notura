@@ -73,8 +73,9 @@ function RecipeSlider() {
                     </div>
                         {sliderData.slice(0, 3).map((slide, index) => {
                             return (
+                                <React.Fragment key={slide.slug}>
                                 <Link to={`recipe/${slide.slug}`}>
-                                <div className={index === current ? "slide active" : "slide"} key={index}> 
+                                <div className={index === current ? "slide active" : "slide"} key={slide.slug}> 
                                     {index === current && (
                                         <div className="img-gradient">
                                             <img src={slide.coverImg} alt={slide.tite} className="slider-image"/> 
@@ -83,6 +84,7 @@ function RecipeSlider() {
                                         )}
                                 </div>
                                 </Link>   
+                                </React.Fragment>
                             ) 
                         })}
                     </section>)

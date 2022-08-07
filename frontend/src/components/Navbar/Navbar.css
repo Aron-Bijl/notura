@@ -19,7 +19,7 @@ ul{
     margin: 0;
 }
 
-logo{
+.navbar-logo{
     font-size: 3rem;
 }
 
@@ -160,6 +160,15 @@ logo{
     margin-right: 2rem;
 }
 
+@media only screen and (max-width: 960px) {
+    .user{
+        display: flex;
+        justify-content: center;
+        align-content: flex-end;
+        margin-right: 0rem;
+    }
+}
+
 .avatar p {
     margin-bottom: 0;
 }
@@ -230,13 +239,13 @@ logo{
 }
 
 .search-box {
- margin: 1.2rem 0 0 0;
+ margin: 1.4rem 0 0 0;
  display: flex;
  align-items: center;
 }
 
 .width-search-box{
-    width: calc(100% - 24px)
+    width: calc(100% - 36px)
 }
 
 .click-icon{
@@ -288,13 +297,13 @@ logo{
     margin-left: 1rem;
 }
 
-@media (max-width: 576px){
+@media (max-width: 992px){
     .search-icon{
         background-color: transparent;
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin-left: 1rem;
+        margin-left: 0rem;
     }
 }

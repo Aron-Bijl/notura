@@ -109,7 +109,7 @@ export default function RecipeListScreen(){
             dispatch({ type: 'CREATE_REQUEST'});
             const { data } = await axios.post(
                 '/api/recipies',
-                {},
+                {userInfo},
                 {
                     headers: { Authorization: `Bearer ${userInfo.token}` },
                 }
@@ -149,12 +149,13 @@ export default function RecipeListScreen(){
                 <title>{userInfo.name}'s Recipes</title>
             </Helmet>
             <h3>Recipes</h3>
+            <Button type='button' buttonSize="btn-large" onClick={createHandler}>Create recipe</Button>
             { loadingCreate && <div><h5>Cooking a new recipe... </h5></div> }
             { loadingDelete && <div><h5>Trying to delete recipe... </h5></div> }
             { loading ? (<div><h5>Loading your recipe list... </h5></div>
                     ) : error? (
                         <div><h5>{error}</h5></div>
-                    ) : (<> 
+                    ) : createdRecipe.length !== 0 ? (<> 
                         <table className='table'>
                             <thead>
                             <tr> 
@@ -190,17 +191,17 @@ export default function RecipeListScreen(){
                         <div className='pagination'>
                             {[...Array(pages).keys()].map((x) => (
                                 <Link
-                                    className={x + 1 === Number(page) ? 'btn btn-link' : 'btn'}
+                                    className={x + 1 === Number(page) ? 'btn-round btn-round-link' : 'btn-round'}
                                     key={x +1}
                                     to={`/recipies/user/?page=${x + 1}`}
                                 >
                                     {x + 1}
                                 </Link>
                             ))}
-                            <Button type='button' buttonSize="btn-large" onClick={createHandler}>Create recipe</Button>
+                            
                         </div>
                      </>
-            )}
+            ) :  ("")}
         </div>
     )
 }

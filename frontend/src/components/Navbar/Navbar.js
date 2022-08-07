@@ -16,7 +16,7 @@ class Navbar extends Component {
         return(
             <nav className='NavbarItems'>
                 <div className='container align'>
-                    <Link to={"/"} ><logo className='navbar-logo'> Notura </logo> </Link> 
+                    <Link to={"/"} ><div className='navbar-logo'> Notura </div> </Link> 
                     <ul className={this.state.clicked ? 'nav-menu active' : 'nav-menu'}>
                         {MenuItems.map((item, index)=> {
                             return (

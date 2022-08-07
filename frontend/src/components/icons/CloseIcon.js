@@ -13,7 +13,7 @@ const CloseIcon = (props) => {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <polygon fill={fill} stroke-width={stroke} points="39 10.44 37.56 9 24 22.56 10.44 9 9 10.44 22.56 24 9 37.56 10.44 39 24 25.44 37.56 39 39 37.56 25.44 24 39 10.44"/>
+      <polygon fill={fill} strokeWidth={stroke} points="39 10.44 37.56 9 24 22.56 10.44 9 9 10.44 22.56 24 9 37.56 10.44 39 24 25.44 37.56 39 39 37.56 25.44 24 39 10.44"/>
     </svg>
     
   )

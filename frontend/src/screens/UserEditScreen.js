@@ -104,12 +104,12 @@ export default function UserEditScreen(){
                 <div className="form-group mt-5 pb-md-3">
                     <div className="form-control-box">
                         <label className="form-label" htmlFor="name">Name</label>
-                        <input type="text" name="name" class="form-control-icon" placeholder="Name" value={name} required onChange={(e) => setName(e.target.value)} />
+                        <input type="text" name="name" className="form-control-icon" placeholder="Name" value={name} required onChange={(e) => setName(e.target.value)} />
                         <span className="form-icon"><ProfileIcon width={24} height={24} /></span>
                     </div>
                     <div className="form-control-box">
                         <label className="form-label" htmlFor="email">Email</label>
-                        <input type="email"  name="email" class="form-control-icon" placeholder="Email" value={email} required onChange={(e) => setEmail(e.target.value)} />
+                        <input type="email"  name="email" className="form-control-icon" placeholder="Email" value={email} required onChange={(e) => setEmail(e.target.value)} />
                         <span className="form-icon"><EmailIcon width={24} height={24} /></span>
                     </div>
                     <div className="checkbox-container" >

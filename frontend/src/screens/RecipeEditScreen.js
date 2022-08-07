@@ -479,10 +479,10 @@ export default function ProductEditScreen () {
                         <div className="edit-recipe">
                             <div className="form-group mt-5 pb-md-3">
                                 <div className="form-control-box">
-                                    <input type="text" name="title" class="form-control" placeholder='Title' required onChange={(e) => setTitle(e.target.value)} value={title} />
+                                    <input type="text" name="title" className="form-control" placeholder='Title' required onChange={(e) => setTitle(e.target.value)} value={title} />
                                 </div>
                                 <div className="form-control-box">
-                                    <textarea rows="3" type="text" name="description" class="form-control" placeholder='Tell your story here' onChange={(e) => setDescription(e.target.value)} value={description} />
+                                    <textarea rows="3" type="text" name="description" className="form-control" placeholder='Tell your story here' onChange={(e) => setDescription(e.target.value)} value={description} />
                                 </div>
                                 <div className="form-control-box drop-down-group">
                                     <label className='drop-down-label' htmlFor="category">Category</label>
@@ -516,7 +516,7 @@ export default function ProductEditScreen () {
                                 </div>
                                 <div className="form-control-box">
                                     <label className='drop-down-label' for="prep-time">Prep time (min)</label>
-                                    <input type="number" name="prep-time" class="form-control" placeholder='Prep time' required onChange={(e) => setPrepTime(e.target.value)} value={prepTime} />
+                                    <input type="number" name="prep-time" className="form-control" placeholder='Prep time' required onChange={(e) => setPrepTime(e.target.value)} value={prepTime} />
                                 </div>
                                 <div className="form-control-box drop-down-group">
                                     <label className='drop-down-label' for="category">Hardness</label>
@@ -529,7 +529,7 @@ export default function ProductEditScreen () {
                                     </select>   
                                 </div>
                                 <div className="form-control-box">
-                                    <input type="text" name="origin" class="form-control" placeholder='Origin' required onChange={(e) => setOrigin(e.target.value)} value={origin} />
+                                    <input type="text" name="origin" className="form-control" placeholder='Origin' required onChange={(e) => setOrigin(e.target.value)} value={origin} />
                                 </div>
                                 <div className="form-control-box">
                                     <label className="drop-down-label " htmlFor="alergies">Alergies</label>
@@ -556,7 +556,7 @@ export default function ProductEditScreen () {
                                 </div>
                                 <div className="form-control-box">
                                     <label className='drop-down-label' htmlFor="servings">Servings (no. people)</label>
-                                    <input type="number" name="servingd" class="form-control" placeholder='Servingd' required onChange={(e) => setServings(e.target.value)} value={servings} />
+                                    <input type="number" name="servingd" className="form-control" placeholder='Servingd' required onChange={(e) => setServings(e.target.value)} value={servings} />
                                 </div>
 
   

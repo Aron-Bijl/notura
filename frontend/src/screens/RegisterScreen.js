@@ -21,8 +21,8 @@ export default function RegisterScreen(){
     const [formPassword, setPassword] = useState('');
     const [formConfirmPassword, setConfirmPassword] = useState('');
 
-const { state, dispatch: ctxDisppatch } = useContext(Store);
-const { userInfo } = state;
+    const { state, dispatch: ctxDisppatch } = useContext(Store);
+    const { userInfo } = state;
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -36,19 +36,20 @@ const { userInfo } = state;
                     email : formEmail,
                     password: formPassword,
                 });
-                ctxDisppatch({type: 'USER_LOGIN', payoad: data});
+
                 localStorage.setItem('userInfo', JSON.stringify(data));
-                navigate(redirect || '/');
+                ctxDisppatch({type: 'USER_LOGIN', payoad: data});
+                window.location.reload();
             }catch (err) {
-            toast.error(getError(err));
+            toast.error(<p>{getError(err)}</p>);
             }
     } 
 
     useEffect(() => {
         if (userInfo) {
-          navigate(redirect);
+            navigate(redirect);
         }
-      }, [navigate, redirect, userInfo]);
+    }, [navigate, redirect, userInfo]);
 
     return(
         <div className="container">
@@ -60,22 +61,22 @@ const { userInfo } = state;
                 <div className="form-group mt-5 pb-md-3">
                 <div className="form-control-box">
                         <label className="form-label" htmlFor="name">Your name</label>
-                        <input type="text" class="form-control-icon" placeholder="Your name" required onChange={(e) => setName(e.target.value)} />
+                        <input type="text" className="form-control-icon" placeholder="Your name" required onChange={(e) => setName(e.target.value)} />
                         <span className="form-icon"><ProfileIcon width={24} height={24} /></span>
                     </div>
                     <div className="form-control-box">
                         <label className="form-label" htmlFor="email">Your email</label>
-                        <input type="email" class="form-control-icon" placeholder="Email" required onChange={(e) => setEmail(e.target.value)} />
+                        <input type="email" className="form-control-icon" placeholder="Email" required onChange={(e) => setEmail(e.target.value)} />
                         <span className="form-icon"><EmailIcon width={24} height={24} /></span>
                     </div>
                     <div className="form-control-box">
                         <label className="form-label" htmlFor="password">Your password</label>
-                        <input type="password" class="form-control-icon" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
+                        <input type="password" className="form-control-icon" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
                         <span className="form-icon"><KeyIcon width={24} height={24} /></span>
                     </div>
                     <div className="form-control-box">
                         <label className="form-label" htmlFor="password">Your password</label>
-                        <input type="password" class="form-control-icon" placeholder="Confirm password" required onChange={(e) => setConfirmPassword(e.target.value)} />
+                        <input type="password" className="form-control-icon" placeholder="Confirm password" required onChange={(e) => setConfirmPassword(e.target.value)} />
                         <span className="form-icon"><KeyIcon width={24} height={24} /></span>
                     </div>
                 </div>

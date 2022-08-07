@@ -14,7 +14,7 @@ const ChevronLeftIcon = (props) => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
 
-    <polygon stroke-width="2" points="30.59 8 32 9.41 18.83 24 32 38.59 30.59 40 16 24 30.59 8"/>
+    <polygon strokeWidth="2" points="30.59 8 32 9.41 18.83 24 32 38.59 30.59 40 16 24 30.59 8"/>
     </svg>
   )
 }

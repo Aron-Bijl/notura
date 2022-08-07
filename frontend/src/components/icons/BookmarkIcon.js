@@ -16,7 +16,7 @@ const BoookmarkIcon = (props) => {
       <path
         fill="none"
         fillRule="evenodd"
-        stroke-width="2"
+        strokeWidth="2"
         d="M10,0V48l13.51-4.93L38,48V0H10ZM36,45.13l-12.51-4.2L12,45V2H36V45.13Z"
       />
     </svg>

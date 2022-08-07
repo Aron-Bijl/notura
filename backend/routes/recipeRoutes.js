@@ -2,7 +2,6 @@ import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import Recipe from '../models/recipeModel.js';
 import { isAdmin, isAuth } from '../utils.js';
-import fs from "fs";
 import path from 'path';
 const __dirname = path.resolve();
 
@@ -23,35 +22,35 @@ recipeRouter.post(
     '/', isAuth,
     expressAsyncHandler(async (req, res) => {
         const newRecipe = new Recipe({
-            title: 'Sample ' + Date.now(),
+            title: 'Sample Name ' + Date.now(),
             slug: 'sample-name-' + Date.now(),
             category: "Sample category",
             type: "Sample type",
             image: "/images/thumbnail/Thumbnail-62dcf418594615c1cd0c0282.jpeg",
-            author: "Jane Doe",
-            email: "recipe@notura.com",
+            author: req.user.name,
+            email: req.user.email,
             imgAuthor: "/images/avatars/Avatar-62dc7badd3baf2dea27ad6bb.jpeg",
-            prepTime: 10,
+            prepTime: 25,
             hardness: "Simple",
             origin: "Country",
             allergies: ["Sample"],
             diet: "Sample",
             coverImg: "/images/covers/Cover-62dcf418594615c1cd0c0282.jpeg",
-            description: "Here is a recipe I created after having this dish in a restaurant. Enjoy!",
+            description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             servings: 0,
             ingredients: [
                {
                     part: "For part one...",
                     subIngredients: [
                         {
-                            amount: 1,
+                            amount: 13,
                             unit: "g",
-                            what: "For the whatever",
+                            what: "Duis",
                         },
                         {
-                            amount: 1,
+                            amount: 7.6,
                             unit: "g",
-                            what: "For the whatever",
+                            what: "Excepteur",
                         }
                     ],
                 },
@@ -59,14 +58,14 @@ recipeRouter.post(
                     part: "For part two...",
                     subIngredients: [
                         {
-                            amount: 1,
+                            amount: 18,
                             unit: "g",
-                            what: "For the whatever"
+                            what: "Ut enim"
                         },
                         {
-                            amount: 1,
+                            amount: 9,
                             unit: "g",
-                            what: "For the whatever"
+                            what: "Minim"
                         },
                     ],
                 },
@@ -78,89 +77,13 @@ recipeRouter.post(
             ],
             nutritionFacts: [
                 {
-                    nutrition: "Nothing",
-                    amount: 10.0,
+                    nutrition: "Diam",
+                    amount: 22.3,
                     unit: "g"
                 },
                 {
-                    nutrition: "More nothing",
-                    amount: 10.0,
-                    unit: "g"
-                },
-            ],
-            likes: 0
-        });
-        const recipe = await newRecipe.save();
-        res.send({ message:"Recipe created", recipe });
-    })
-)
-
-recipeRouter.post(
-    '/user', isAuth, 
-    expressAsyncHandler(async (req, res) => {
-        const newRecipe = new Recipe({
-            title: 'Just a sample title ' + Date.now(),
-            slug: 'sample-name-' + Date.now(),
-            category: "Sample category",
-            type: "Sample type",
-            image: "/thumbnail/Thumbnail-62c9d225ebf68e1c148cb21f.jpeg",
-            author: "Jane Doe",
-            email: "recipe@notura.com",
-            imgAuthor: "/avatar/Avatar-1656494294668.jpeg",
-            prepTime: 10,
-            hardness: "Simple",
-            origin: "Country",
-            allergies: ["Sample"],
-            diet: "Sample",
-            coverImg: "/covers/Cover-62c9d225ebf68e1c148cb21f.jpeg",
-            description: "Here is a recipe I created after having this dish in a restaurant. Enjoy!",
-            servings: 0,
-            ingredients: [
-               {
-                    part: "For part one...",
-                    subIngredients: [
-                        {
-                            amount: 1,
-                            unit: "g",
-                            what: "For the whatever",
-                        },
-                        {
-                            amount: 1,
-                            unit: "g",
-                            what: "For the whatever",
-                        }
-                    ],
-                },
-                {   
-                    part: "For part two...",
-                    subIngredients: [
-                        {
-                            amount: 1,
-                            unit: "g",
-                            what: "For the whatever"
-                        },
-                        {
-                            amount: 1,
-                            unit: "g",
-                            what: "For the whatever"
-                        },
-                    ],
-                },
-            ],
-            instructions: [
-                "In step 1",
-                "In step 2",
-                "In step 3",
-            ],
-            nutritionFacts: [
-                {
-                    nutrition: "Nothing",
-                    amount: 10.0,
-                    unit: "g"
-                },
-                {
-                    nutrition: "More nothing",
-                    amount: 10.0,
+                    nutrition: "Dignissim",
+                    amount: 10.7,
                     unit: "g"
                 },
             ],

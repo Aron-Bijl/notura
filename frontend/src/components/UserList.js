@@ -99,9 +99,9 @@ export default function UserList(){
                 </thead>
                 <tbody>
             {users.data.map((user, index) => {
-                return <>
-                        <tr key={user._id}>
-                            <td className="">{user.name}</td>
+                return <React.Fragment key={user._id}>
+                        <tr>
+                            <td>{user.name}</td>
                             <td className="email-list">{user.email}</td>
                             {user.isAdmin ? <td className="">Yes</td> : <td className="">No</td>}
                             <td className="action">
@@ -109,7 +109,7 @@ export default function UserList(){
                                 <Button type="button"  buttonStyle="btn" buttonSize="btn-medium"  onClick={() => deleteHandler(user)}>Delete</Button>
                             </td>
                         </tr>
-                </>
+                </React.Fragment>
             })}
             </tbody>
             </table>

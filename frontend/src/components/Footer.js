@@ -1,50 +1,53 @@
 import React from 'react';
+// import { Link } from 'react-router-dom';
 
 
 export default function Footer () {
 
     return(
        <>
-         <footer class="notura-footer pt-3 pt-md-5 bg-lightest-gray">
-            <div class="container">
-            <div class="row pt-4 pb-0 pb-md-5">
-                <div class="col-md-6">
-                <div class="notura-footer-contnet pe-0 pe-lg-5 me-0 me-md-5">
+         <footer className="notura-footer pt-3 pt-md-5 bg-lightest-gray">
+            <div className="container">
+            <div className="row pt-4 pb-0 pb-md-5">
+                <div className="col-md-6">
+                <div className="notura-footer-contnet pe-0 pe-lg-5 me-0 me-md-5">
                     <a href="/">
                     <h3>Notura</h3>
                     </a>
-                    <p class="mt-3 pe-0 pe-lg-5 me-0 me-lg-4">A recipe App that exists solely for the pleasures of your mouth.</p>
+                    <h5 className="mt-3 pe-0 pe-lg-5 me-0 me-lg-4">A recipe App that solely exists for the pleasures of your mouth.</h5>
                 </div>
                 </div>
-                <div class="col-md-2">
-                <h6 class="caption mb-2">
+                <div className="col-md-2">
+                          {/*
+                <h6 className="caption mb-2">
                     Notura
                 </h6>
                 <ul>
-                    <li><a href="#0">About us</a></li>
-                    <li><a href="#0">Careers</a></li>
-                    <li><a href="#0">Contact us</a></li>
-                    <li><a href="#0">Feedback</a></li>
+                    <li><Link to="#0">About us</Link></li>
+                    <li><Link to="#0">Careers</Link></li>
+                    <li><Link to="#0">Contact us</Link></li>
+                    <li><Link to="#0">Feedback</Link></li>
                 </ul>
                 </div>
-                <div class="col-md-2">
-                <h6 class="caption mb-2">
+                <div className="col-md-2">
+                <h6 className="caption mb-2">
                     Legal
                 </h6>
                 <ul>
-                    <li><a href="#0">Terms</a></li>
-                    <li><a href="#0">Conditions</a></li>
-                    <li><a href="#0">Cookies</a></li>
-                    <li><a href="#0">Copyright</a></li>
+                    <li><Link to="#0">Terms</Link></li>
+                    <li><Link to="#0">Conditions</Link></li>
+                    <li><Link to="#0">Cookies</Link></li>
+                    <li><Link to="#0">Copyright</Link></li>
                 </ul>
+                */}
                 </div>
             </div>
             </div>
-            <div class="container">
+            <div className="container">
             <hr />
-            <div class="row pb-4 pt-2 align-items-center">
-                <div class="col-md-6 order-2 order-md-0">
-                <p class="text-gray-300 small text-start mb-0">&copy; 2022 Notura - All rights reserved</p>
+            <div className="row pb-4 pt-2 align-items-center">
+                <div className="col-md-6 order-2 order-md-0">
+                <p className="text-gray-300 small text-start mb-0">&copy; 2022 Notura - All rights reserved</p>
                 </div>
             </div>
             </div>

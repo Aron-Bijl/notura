@@ -38,7 +38,7 @@ function RecipeCardsCat() {
             recipeCards: [],
             loading: true, 
             error: '',
-            setting: "All",
+            setting: "",
             loadingSetting: true,
             loadingSetCat: false,
         });
@@ -47,7 +47,7 @@ function RecipeCardsCat() {
 
         useEffect(()=> {
             const fetchData = async () => {
-                if(!userInfo === false){
+                if(userInfo){
                     dispatch({type: 'SETTING_FETCH'});
                     try{
                         const { data } = await axios.get( 
@@ -91,19 +91,21 @@ function RecipeCardsCat() {
             const submitHandler = async (e) => { 
 
                 dispatch({ type: "REFRESH_SETCAT", payload: setting })
-                try{
-                     await axios.post(
-                        `/api/users/settings`,
-                        {settings: category},
-                        {
-                            headers: { Authorization: `Bearer ${userInfo.token}` },
-                        }
-                    );
-                dispatch({ type: "SETCAT_SUCCES" });
-        
-                }catch(err){
-                    dispatch({ type: "SETCAT_FAIL" });
-                } 
+                if(userInfo){
+                    try{
+                        await axios.post(
+                            `/api/users/settings`,
+                            {settings: category},
+                            {
+                                headers: { Authorization: `Bearer ${userInfo.token}` },
+                            }
+                        );
+                    dispatch({ type: "SETCAT_SUCCES" });
+            
+                    }catch(err){
+                        dispatch({ type: "SETCAT_FAIL" });
+                    } 
+                }
             }
 
             submitHandler(category);
@@ -152,22 +154,22 @@ function RecipeCardsCat() {
                 <div className="column">
 
                 { !loadingSetting && !loadingSetCat ? (<select name="category"  value={category} onChange={(e) => setCategory(e.target.value)} className="select-title">
-                            {possibleCat.map((val) => {
+                            {possibleCat.map((val, index) => {
                                 return (
-                                    <option value={checkItem(val, possibleCat)}>{val}</option>
+                                    <option key={"cat-key" + index} value={checkItem(val, possibleCat)}>{val}</option>
                                 )
                                 })}
-                    </select>) : (<></>) }  
+                    </select>) : ("") }  
                 </div>
-                <>
-                {userInfo ? (<>
+                
+                {userInfo ? (
                     <div className="row">
                     {
                         loading ? (<div><h5>Loading your recipie cards... </h5></div>
                         ) : error? (
                             <div><h5>{error}</h5></div>
                         ) : (
-                        <>
+                        <React.Fragment>
                         { categorySelect().length === 0 ?  
                             (<h5>Right now we do not have recipes in this category</h5>) 
                             : (categorySelect().map(recipe => (
@@ -180,11 +182,11 @@ function RecipeCardsCat() {
                                 </figcaption>
                                 </figure>
                             )))}
-                        </>)
+                        </React.Fragment>)
                     }
                 </div>
-                </>):(<></>)}
-                </>
+                ):("")}
+                
                 </section>
             </div>
         )

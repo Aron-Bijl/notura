@@ -30,7 +30,6 @@ const { userInfo } = state;
             });
             ctxDisppatch({type: 'USER_LOGIN', payload: data});
             localStorage.setItem('userInfo', JSON.stringify(data));
-            navigate(redirect || '/');
         }catch (err) {
            toast.error(<p>{getError(err)}</p>);
         }
@@ -52,12 +51,12 @@ const { userInfo } = state;
                 <div className="form-group mt-5 pb-md-3">
                     <div className="form-control-box">
                         <label className="form-label" htmlFor="email">Your email</label>
-                        <input type="email" name="email" class="form-control-icon" placeholder="Email" required onChange={(e) => setEmail(e.target.value)} />
+                        <input type="email" name="email" className="form-control-icon" placeholder="Email" required onChange={(e) => setEmail(e.target.value)} />
                         <span className="form-icon"><EmailIcon width={24} height={24} /></span>
                     </div>
                     <div className="form-control-box">
                         <label className="form-label" htmlFor="password">Your password</label>
-                        <input type="password"  name="password" class="form-control-icon" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
+                        <input type="password"  name="password" className="form-control-icon" placeholder="Password" required onChange={(e) => setPassword(e.target.value)} />
                         <span className="form-icon"><KeyIcon width={24} height={24} /></span>
                     </div>
                 </div>

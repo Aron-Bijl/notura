@@ -58,7 +58,6 @@ function RecipeCard() {
                     ) : (
                     <>
                     { recipeCards.slice(random, nextBreakPoint).map((recipe) => ( 
-                        <>
                             <figure key={recipe.slug} className="card col-md-4 col-xl-4">
                             <Link to={`recipe/${recipe.slug}`} className="animation rounded-top"> <img className="w-100" src={recipe.image} alt={recipe.name} />  </Link>
                             <figcaption className="border-card rounded-bottom border-top">
@@ -81,7 +80,7 @@ function RecipeCard() {
                             </div>
                             </figcaption>
                             </figure>
-                        </>)) }
+                        )) }
                     </>)
                 }
                 </div>

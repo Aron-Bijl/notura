@@ -41,9 +41,13 @@ function LatestRecipes() {
         }, []);
 
         const [cards, setCards] = useState(3)
+        const [buttonText, setButtonText] = useState("Load more")
 
         const add = () => {
             setCards(cards+3);
+            if(cards >= recipeCards.length){
+                setButtonText("That's all");
+            }
         }
 
         return(
@@ -56,10 +60,10 @@ function LatestRecipes() {
                     ) : error? (
                         <div><h5>{error}</h5></div>
                     ) : (
-                    <>
+                    <React.Fragment>
                     { recipeCards.slice(0, cards).map(recipe => (
-                        <div className="col-md-4 col-xl-4 col-lg-3 col-6">
-                            <figure key={recipe.slug} className="card ">
+                        <div key={recipe.slug}  className="col-md-4 col-xl-4 col-lg-3 col-6">
+                            <figure className="card ">
                             <Link to={`/recipe/${recipe.slug}`} className="animation rounded"><img className="small-thumbNail" src={recipe.image} alt={recipe.name} /></Link>
                             <figcaption className="rounded-bottom border-top">
                             <div className="pb-4 ">
@@ -68,9 +72,10 @@ function LatestRecipes() {
                             </figcaption>
                             </figure>
                         </div>
-                        )) }
-                        <Button type="button"  buttonStyle="btn--outline" buttonSize="btn-medium"  onClick={() => {add()}}>Load more</Button>
-                    </>)
+                    ))}
+                    <Button type="button"  buttonStyle="btn--outline" buttonSize="btn-medium"  onClick={() => {add()}}> {buttonText} </Button> 
+                    </React.Fragment>
+                    )
                 }
                 </div>
                 </section>

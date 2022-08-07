@@ -29,16 +29,16 @@ function App() {
   }, [userInfo]);
 
   return (
-    <div className="App">
+    <div>
       <ToastContainer position="bottom-center" limit={1}></ToastContainer>
       <header>
-        <>
+        <React.Fragment>
         {userInfo ? (
             <NavbarUser/> //logged-in
         ) : (
           <Navbar/>
         )}
-        </>
+        </React.Fragment>
       </header>
       <main>
         <Routes>

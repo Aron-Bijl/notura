@@ -109,7 +109,7 @@ export default function RecipeListScreen(){
             dispatch({ type: 'CREATE_REQUEST'});
             const { data } = await axios.post(
                 '/api/recipies',
-                {},
+                {userInfo},
                 {
                     headers: { Authorization: `Bearer ${userInfo.token}` },
                 }
@@ -191,7 +191,7 @@ export default function RecipeListScreen(){
                         <div className='pagination'>
                             {[...Array(pages).keys()].map((x) => (
                                 <Link
-                                    className={x + 1 === Number(page) ? 'btn btn-link' : 'btn'}
+                                    className={x + 1 === Number(page) ? 'btn-round btn-round-link' : 'btn-round'}
                                     key={x +1}
                                     to={`/recipies/admin/?page=${x + 1}`}
                                 >

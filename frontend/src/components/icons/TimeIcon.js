@@ -14,8 +14,8 @@ const TimeIcon = (props) => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
     <g id="Clock">
-      <circle stroke-width={stroke} fill={fill} cx="24" cy="24" r="23"/>
-      <polyline stroke-width={stroke} fill={fill} points="25,7 25,25 13,25 	"/>
+      <circle strokeWidth={stroke} fill={fill} cx="24" cy="24" r="23"/>
+      <polyline strokeWidth={stroke} fill={fill} points="25,7 25,25 13,25 	"/>
     </g>
     </svg>
   )

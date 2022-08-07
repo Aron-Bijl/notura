@@ -131,22 +131,22 @@ export default function ProfileScreen(){
                     </div>
                     <div className="form-group mt-5 pb-md-3">
                         <div className="form-control-box">
-                            <label className="form-label" for="name">Full name</label>
+                            <label className="form-label" htmlFor="name">Full name</label>
                             <input type="text" name="name" className="form-control-icon" placeholder={name} value={name} required onChange={(e) => setName(e.target.value)} />
                             <span className="form-icon"><ProfileIcon width={24} height={24} /></span>
                         </div>
                         <div className="form-control-box">
-                            <label className="form-label" for="email">Email</label>
+                            <label className="form-label" htmlFor="email">Email</label>
                             <input type="email" name="email" className="form-control-icon" placeholder={email} value={email} required onChange={(e) => setEmail(e.target.value)} />
                             <span className="form-icon"><EmailIcon width={24} height={24} /></span>
                         </div>
                         <div className="form-control-box">
-                            <label className="form-label" for="password">Password</label>
+                            <label className="form-label" htmlFor="password">Password</label>
                             <input type="password" name="password" className="form-control-icon" placeholder="Your password" required onChange={(e) => setPassword(e.target.value)} />
                             <span className="form-icon"><KeyIcon width={24} height={24} /></span>
                         </div>
                         <div className="form-control-box">
-                            <label className="form-label" for="password">Confirm password</label>
+                            <label className="form-label" htmlFor="password">Confirm password</label>
                             <input type="password" name="password" className="form-control-icon" placeholder="Confirm password" required onChange={(e) => setConfirmPassword(e.target.value)} />
                             <span className="form-icon"><KeyIcon width={24} height={24} /></span>
                         </div>
