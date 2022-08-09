@@ -146,7 +146,7 @@ function RecipeCardsCat() {
             });
         }
 
-        const possibleCat = ["All", "Sweets", "Meat", "Vegetables", "Complex", "Fruits", "Dairy", "Nuts and Seeds", "Fish and Seafood", "Eggs"];
+        const possibleCat = ["Sweets", "Meat", "Vegetables", "Complex", "Fruits", "Dairy", "Nuts and Seeds", "Fish and Seafood", "Pasta", "Rice", "Legumes (Beans)", "Salads", "Beverages"];
 
         return(
             <div className="container">

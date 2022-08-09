@@ -122,6 +122,7 @@ recipeRouter.put(
             recipe.nutritionFacts = req.body.nutritionFacts;
             recipe.likes = req.body.likes;
             await recipe.save();
+    
             res.send({ message: 'Recipe updated' });
         }else{
             res.status(404).send({ message: 'Recipe not found' });

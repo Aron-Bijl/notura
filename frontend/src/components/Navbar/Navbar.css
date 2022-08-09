@@ -1,7 +1,8 @@
 .align{
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
 }
 
 .NavbarItems{
@@ -13,6 +14,10 @@
     position: fixed;
     width: 100%;
     top: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
 }
 
 ul{
@@ -148,9 +153,12 @@ ul{
         display: none;
     }
 }
+
 .search-login{
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    width: 10.8rem;
 }
 
 .user{
@@ -289,7 +297,7 @@ ul{
 .search-icon{
     height: 4.8rem;
     width: 4.8rem;
-    background-color: #DFD9D0;
+    /*background-color: #DFD9D0; */
     border-radius: 50%;
     display: flex;
     justify-content: center;

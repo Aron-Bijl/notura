@@ -7,13 +7,16 @@ import { Button } from '../components/Button';
 import { Store } from '../Store';
 import { getError } from '../utils';
 
-const possibleCat = ["Sweets", "Meat", "Vegetables", "Complex", "Fruits", "Dairy", "Nuts and Seeds", "Fish and Seafood", "Eggs"];
+const possibleCat = ["Sweets", "Meat", "Vegetables", "Complex", "Fruits", "Dairy", "Nuts and Seeds", "Fish and Seafood", "Pasta", "Rice", "Legumes (Beans)", "Salads", "Beverages"];
 const possibleType = ["Breakfast", "Brunch", "Lunch", "Dinner", "Snack"];
 const hardnessLevel = ["Simple", "Normal", "Hard", "Extreme"];
-const possibleAllergies = ["Sugar", "Mustard", "Gluten", "Lactose"];
+const possibleAllergies = ["Wheat", "Dairy", "Tree nuts", "Peanuts", "Shellfish", "Soy", "Fish", "Sugar", "Mustard seeds", "Sesame seeds", "Linseed", "Aniseed", "Peach", "Banana", "Avocado", "Kiwi fruit", "Passion fruit", "Celery", "Garlic", "Chamomile"];
+//https://www.healthline.com/nutrition/common-food-allergies#other-common-food-allergies
 const possibleDiet = ["Vegan", "Vegaterian", "Paleo", "Keto", "Low Carb", "High Carb", "Fruitarian", "High Protein", "Mediterranean", "Carnivore"];
-const units = ["g", "mg", "kg", "table spoon", "tea spoon"];
-const nutritions = ["none", "Calories", "Total Fat", "Saturated Fat", "Cholesterol", "Sodium", "Potassium", "Total Carbohydrate", "Sugars", "Protein", "Vitamin C", "Vitamin B" ]
+const units = ["drops", "pinch", "g", "mg", "Kg ", "ml", "L", "tbsp", "tsp", "pieces"];
+const nutritions = ["Calories", "Total Fat", "Saturated Fat", "Unsaturated Fat", "Cholesterol", "Fiber", "Sodium", "Magnesium", "Calcium", "Potassium", "Total Carbohydrate", "Salts", "Sugars", "Proteins", "Vitamin A" , "Vitamin B", "Vitamin C", "Vitamin D", "Vitamin K" ];
+//https://www.healthline.com/health/food-nutrition
+//https://www.calorieking.com/us/en/foods/
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -156,6 +159,9 @@ export default function ProductEditScreen () {
         const bodyFormData = new FormData();
         bodyFormData.append('image', file);
         bodyFormData.append('id', recipeId);
+        let thumbNailPath = "";
+        let coverImgPath = "";
+
         try{
             dispatch({ type: 'UPLOAD_REQUEST' });
            const  { data }  = await axios.post('/api/covers', bodyFormData, {
@@ -166,7 +172,8 @@ export default function ProductEditScreen () {
             }); 
 
             setCoverImg(data);
-            console.log(data);
+            coverImgPath = data;
+
             dispatch({
                 type: 'UPLOAD_SUCCESS',
             });
@@ -175,14 +182,8 @@ export default function ProductEditScreen () {
             dispatch({
                 type: 'UPLOAD_FAIL'
             });
-        } 
-    } 
+        }
 
-    const uploadThumbnail = async(e) => {
-        const file = e.target.files[0];
-        const bodyFormData = new FormData();
-        bodyFormData.append('image', file);
-        bodyFormData.append('id', recipeId);
         try{
             dispatch({ type: 'UPLOAD_THUMBNAIL_REQUEST' });
             const  { data }  = await axios.post('/api/thumbnail', bodyFormData, 
@@ -194,7 +195,8 @@ export default function ProductEditScreen () {
             }); 
 
             setThumbnail(data);
-            console.log(data);
+            thumbNailPath = data;
+
             dispatch({
                 type: 'UPLOAD_THUMBNAIL_SUCCESS',
             });
@@ -204,7 +206,38 @@ export default function ProductEditScreen () {
             dispatch({
                 type: 'UPLOAD_THUMBNAIL_FAIL'
             });
-        } 
+        }
+        
+        
+        await axios.put(
+            `/api/recipies/${recipeId}`,
+            {
+                _id: recipeId,
+                title,
+                slug:  titleToSLug(),
+                author,
+                email,
+                imgAuthor,
+                description,
+                category,
+                type,
+                coverImg: coverImgPath,
+                thumbnail: thumbNailPath,
+                prepTime,
+                hardness,
+                origin,
+                allergies,
+                diet,
+                servings,
+                ingredients,
+                instructions,
+                nutritionFacts,
+                likes,
+            },
+            {
+                headers: { Authorization: `Bearer ${userInfo.token}` }
+            }
+        );
     } 
 
     const submitHandler = async (e) => {
@@ -474,7 +507,7 @@ export default function ProductEditScreen () {
                 { loading ? (<div><h5>Loading your recipe list... </h5></div>
                     ) : error ? (
                         <div><h5>{error}</h5></div>
-                    ) : (<>  
+                    ) : (<React.Fragment>  
                         <form onSubmit={submitHandler}> 
                         <div className="edit-recipe">
                             <div className="form-group mt-5 pb-md-3">
@@ -489,17 +522,17 @@ export default function ProductEditScreen () {
                                     <select name="category"  value={category} onChange={(e) => setCategory(e.target.value)} className="drop-down">
                                         {possibleCat.map((val) => {
                                             return (
-                                                <option value={checkItem(category, possibleCat)}>{val}</option>
+                                                <option key={"category-option-" + val} value={checkItem(category, possibleCat)}>{val}</option>
                                             )
                                         })}
                                     </select>   
                                 </div>
                                 <div className="form-control-box drop-down-group">
-                                    <label className='drop-down-label' for="type">Type</label>
+                                    <label className='drop-down-label' htmlFor="type">Type</label>
                                     <select name="type"  value={type} onChange={(e) => setType(e.target.value)} className="drop-down">
                                         {possibleType.map((val) => {
                                             return (
-                                                <option value={checkItem(type, possibleType)}>{val}</option>
+                                                <option key={"type-option-" + val} value={checkItem(type, possibleType)}>{val}</option>
                                             )
                                         })}
                                     </select>   
@@ -508,22 +541,22 @@ export default function ProductEditScreen () {
                                     <img src={coverImg} alt="cover" className="cover-image" />
                                     <div className='image-upload'>  
                                         <label className="uploadLabel">
-                                            <input type="file" className="uploadButton"  onChange={(e) => {uploadFileHandler(e); uploadThumbnail(e)}}/>
+                                            <input type="file" className="uploadButton"  onChange={(e) => {uploadFileHandler(e)}}/>
                                             Update image
                                         </label>
                                         { loadingUpload && loadingUploadThumbnail && <div><h4>Wait till we upload your image...</h4></div> }
                                     </div>
                                 </div>
                                 <div className="form-control-box">
-                                    <label className='drop-down-label' for="prep-time">Prep time (min)</label>
+                                    <label className='drop-down-label' htmlFor="prep-time">Prep time (min)</label>
                                     <input type="number" name="prep-time" className="form-control" placeholder='Prep time' required onChange={(e) => setPrepTime(e.target.value)} value={prepTime} />
                                 </div>
                                 <div className="form-control-box drop-down-group">
-                                    <label className='drop-down-label' for="category">Hardness</label>
+                                    <label className='drop-down-label' htmlFor="category">Hardness</label>
                                     <select name="category"  value={hardness} onChange={(e) => setHardness(e.target.value)} className="drop-down">
-                                        {hardnessLevel.map((val) => {
+                                        {hardnessLevel.map((val, index) => {
                                             return (
-                                                <option value={checkItem(hardness, hardnessLevel)}>{val}</option>
+                                                <option key={"option-" + index} value={checkItem(hardness, hardnessLevel)}>{val}</option>
                                             )
                                         })}
                                     </select>   
@@ -535,7 +568,7 @@ export default function ProductEditScreen () {
                                     <label className="drop-down-label " htmlFor="alergies">Alergies</label>
                                     {possibleAllergies.map((val, index) => {
                                             return (
-                                                <div className="checkbox-container" >
+                                                <div key={"alergies-" + index} className="checkbox-container" >
                                                     <label className="checkbox-label" name={val}>{val}
                                                             <input type="checkbox" onChange={e => {handleCheck(e, index)}} value={val} checked={checkedState[index]}/> 
                                                             <span className={`checkbox ${checkedState[index] ? "checkbox-active" : ""}`} aria-hidden="true"></span>
@@ -549,7 +582,7 @@ export default function ProductEditScreen () {
                                     <select name="diet"  value={diet} onChange={(e) => setDiet(e.target.value)} className="drop-down">
                                         {possibleDiet.map((val) => {
                                             return (
-                                                <option value={checkItem(diet, possibleDiet)}>{val}</option>
+                                                <option key={"diet-option-" + val} value={checkItem(diet, possibleDiet)}>{val}</option>
                                             )
                                         })}
                                     </select>   
@@ -564,8 +597,8 @@ export default function ProductEditScreen () {
                                 <h4 className="pb-4">Ingredients</h4>
                                   {ingredients.map((val, index) => {
                                             return (
-                                                <>
-                                                <div className="checkbox-container" key={index}>
+                                                <React.Fragment key={"ingredients-" + index}>
+                                                <div className="checkbox-container">
                                                     <input 
                                                         key={"ingredient-title"-index}
                                                         name="ingredients"
@@ -594,7 +627,7 @@ export default function ProductEditScreen () {
                                                                 <select key={"unit-"+index+"-"+i} name="type"  value={val.subIngredients[i].unit} onChange={(e) => setUnit(i, index, e.target.value)} className="drop-down px-4">
                                                                     {units.map((unit) => {
                                                                         return (
-                                                                            <option value={checkItem(unit, units)}>{unit}</option>
+                                                                            <option key={"unit-option-" + unit} value={checkItem(unit, units)}>{unit}</option>
                                                                         )
                                                                     })}
                                                                 </select>   
@@ -615,7 +648,7 @@ export default function ProductEditScreen () {
                                                         </div>
                                                     )
                                                 })}
-                                            </>
+                                            </React.Fragment>
                                             )
                                     })}     
                                     <Button onClick={addIngriedient} buttonStyle="btn--outline" buttonSize="btn-medium" >Add more parts...</Button> 
@@ -624,8 +657,8 @@ export default function ProductEditScreen () {
                                 <h4 className="pb-4">Instructions</h4>
                                   {instructions.map((val, index) => {
                                             return (
-                                                <>
-                                                 <div className="checkbox-container" key={index}>
+                                                <React.Fragment key={"instruction" + val}>
+                                                 <div className="checkbox-container">
                                                     <textarea 
                                                         key={"instruction"-index}
                                                         name="instructions"
@@ -641,7 +674,7 @@ export default function ProductEditScreen () {
                                                         <Button buttonStyle="btn" buttonSize="btn-medium" onClick={event => addInstruction(index, event)}>+</Button>                       
                                                     </div>
                                                 </div>
-                                                </>
+                                                </React.Fragment>
                                             )
                                     })}
                                 </div>
@@ -649,12 +682,12 @@ export default function ProductEditScreen () {
                                 <h4 className="pb-4">Macro Nutritions</h4>
                                   {nutritionFacts.map((val, index) => {
                                             return (
-                                                <div className="nutrition-fact-row">
+                                                <div key={"unit-"+index} className="nutrition-fact-row">
                             
-                                                        <select key={"unit-"+index} name="type"  value={val.nutrition} onChange={(e) => setNutrition(index, e.target.value)} className="drop-down px-4">
+                                                        <select name="type"  value={val.nutrition} onChange={(e) => setNutrition(index, e.target.value)} className="drop-down px-4">
                                                             {nutritions.map((nutrition) => {
                                                             return (
-                                                                <option value={checkItem(nutrition, nutritions)}>{nutrition}</option>
+                                                                <option key={"nutrition-option-" + nutrition} value={checkItem(nutrition, nutritions)}>{nutrition}</option>
                                                             )
                                                             })}
                                                         </select>  
@@ -672,7 +705,7 @@ export default function ProductEditScreen () {
                                                         <select key={"nutUnit-"+index} name="type"  value={val.unit} onChange={(e) => setNutUnit(index, e.target.value)} className="drop-down px-4">
                                                                         {units.map((unit) => {
                                                                             return (
-                                                                                <option value={checkItem(unit, units)}>{unit}</option>
+                                                                                <option key={"unit-option-" + unit} value={checkItem(unit, units)}>{unit}</option>
                                                                             )
                                                                         })}
                                                         </select>   
@@ -696,7 +729,7 @@ export default function ProductEditScreen () {
                             </div>
                         </div>
                     </form>
-                     </>)
+                     </React.Fragment>)
                 }
             </section>
         </div>

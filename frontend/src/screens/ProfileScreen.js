@@ -1,6 +1,7 @@
 import axios from "axios";
 import React,  { useContext, useState, useReducer } from "react";
 import { Helmet } from "react-helmet-async";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Button } from "../components/Button";
 import EmailIcon from "../components/icons/EmailIcon";
@@ -29,6 +30,8 @@ const reducer = (state, action) => {
 }
 
 export default function ProfileScreen(){
+    const params = useParams();
+    const { id: userId } = params;
     
     const { state, dispatch: ctxDispatch } = useContext(Store);
     const { userInfo } = state;
@@ -54,6 +57,7 @@ export default function ProfileScreen(){
                 const { data } = await axios.put(
                     '/api/users/profile',
                     {
+                        userId,
                         name,
                         email,
                         password,
@@ -88,6 +92,10 @@ export default function ProfileScreen(){
         const file = e.target.files[0];
         const bodyFormData = new FormData();
         bodyFormData.append('image', file);
+
+        let newAvatarImage = "";
+        let localStorageInfo = JSON.parse(localStorage.getItem('userInfo'));
+
         try{
             dispatch({ type: 'UPLOAD_AVATAR_REQUEST' });
            const  { data }  = await axios.post('/api/avatar', bodyFormData, 
@@ -97,8 +105,21 @@ export default function ProfileScreen(){
                     Authorization: `Bearer ${userInfo.token}`
                 }
             }); 
-            console.log(data);
+
+            newAvatarImage = data;
             setAvatar(data);
+
+            await axios.put(
+                '/api/users/profile',
+                {
+                    userId,
+                    imgAuthor: data,
+                },
+                {
+                    headers: { Authorization: `Bearer ${userInfo.token}`  }
+                }
+            );
+
             dispatch({
                 type: 'UPLOAD_AVATAR_SUCCESS',
             });
@@ -107,7 +128,10 @@ export default function ProfileScreen(){
             dispatch({
                 type: 'UPLOAD_AVATAR_FAIL'
             });
-        } 
+        }
+        localStorageInfo.imgAuthor = newAvatarImage;
+        localStorage.setItem('userInfo', JSON.stringify(localStorageInfo));
+        ctxDispatch({ type: 'USER_LOGIN', payload: localStorageInfo });
     } 
 
     return(

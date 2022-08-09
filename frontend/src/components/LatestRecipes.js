@@ -42,11 +42,15 @@ function LatestRecipes() {
 
         const [cards, setCards] = useState(3)
         const [buttonText, setButtonText] = useState("Load more")
+        const [activity, setActivity] = useState("active");
 
         const add = () => {
             setCards(cards+3);
             if(cards >= recipeCards.length){
                 setButtonText("That's all");
+                setActivity("inactive");
+            }else{
+             setActivity("active");
             }
         }
 
@@ -73,7 +77,7 @@ function LatestRecipes() {
                             </figure>
                         </div>
                     ))}
-                    <Button type="button"  buttonStyle="btn--outline" buttonSize="btn-medium"  onClick={() => {add()}}> {buttonText} </Button> 
+                    <Button id="more-button" type="button" activity={activity} buttonStyle="btn--outline" buttonSize="btn-medium"  onClick={() => {add()}}> {buttonText} </Button> 
                     </React.Fragment>
                     )
                 }

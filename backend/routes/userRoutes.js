@@ -76,12 +76,14 @@ userRouter.put(
     expressAsyncHandler(async (req, res) => {
         const user = await User.findById(req.user._id);
         if(user){
+            user._id  = req.user._id  || user._id;
             user.name = req.body.name || user.name;
             user.email = req.body.email || user.email;
             user.imgAuthor = req.body.imgAuthor || user.imgAuthor;
             if (req.body.password){
                 user.password = bcrypt.hashSync(req.body.password, 8);
             }
+
             const updatedUser = await user.save();
             res.send({
                 _id: updatedUser._id,

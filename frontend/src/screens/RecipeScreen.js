@@ -168,18 +168,18 @@ function RecipeScreen() {
                                         <div className="mt-md-5 pb-4">
                                             <h3>Ingredients</h3>
                                               { recipe.ingredients.map((i, indexI) => (
-                                                  <>
+                                                  <React.Fragment key={"title-ingredient-"+indexI}>
                                                     <h4 alt={i.part}> {i.part} </h4>
                                                      {i.subIngredients.map( (j, indexJ) => (
-                                                        <div className="form-check form-check-rounded recipe-checkbox">
-                                                            <label className="form-check-label" for={j.identifier}>
+                                                        <div className="form-check form-check-rounded recipe-checkbox" key={"ingredient-" + indexI + "-" + indexJ}>
+                                                            <label className="form-check-label" htmlFor={j.identifier}>
                                                                 <input type="checkbox" id={j.identifier} name={j.identifier} className="form-check-input"  checked={checkState(indexI, indexJ)} onChange={e => {handleCheck(e, indexI, indexJ); setCheck(!check)}}/>
                                                                 <span className={`checkbox ${ checkState(indexI, indexJ) ? "checkbox-active" : ""}`} aria-hidden="true"></span>
                                                                 <p className={`${ checkState(indexI, indexJ) ? "active" : ""}`} >{j.amount} {j.unit} {j.what} </p>
                                                             </label> 
                                                         </div>
                                                     ))} 
-                                                 </>
+                                                 </React.Fragment>
                                               )) }
                                         </div>
                                         <div className="row mt-4">
@@ -188,8 +188,8 @@ function RecipeScreen() {
                                                     <h3>Nutrition Facts</h3>
                                                     <ul className="nutrition-list list-unstyled">
                                                     {
-                                                        recipe.nutritionFacts.map(nut => (
-                                                            <li>
+                                                        recipe.nutritionFacts.map((nut, index) => (
+                                                            <li key={"nut-" + index}>
                                                                 <span>{nut.nutrition}</span>
                                                                 <span>{nut.amount} {nut.unit}</span>
                                                             </li>
@@ -206,9 +206,9 @@ function RecipeScreen() {
                                             <h3>Instructions</h3>
                                             <ol className="instruction-list">
                                             {
-                                                recipe.instructions.map(steps => (
+                                                recipe.instructions.map((steps, index) => (
                                                    
-                                                    <li><p>{ steps }</p></li>
+                                                    <li key={"instruction" + index}><p>{ steps }</p></li>
                                                    
                                                 ))
                                             }

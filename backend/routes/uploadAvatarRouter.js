@@ -42,15 +42,13 @@ uploadAvatarRouter.post(
             const PATH = path.join(__dirname, "./avatars", fullName);
             const DIR = __dirname + "/avatars";
 
-            console.log(DIR);
-
             const files = fs.readdirSync(DIR);
             const exists = files.filter(filename => {
                 if (filename === fullName) return fullName;
             });
 
             if(exists[0] === fullName){
-                console.log("File already exists, I will delete the existing file and write the a one, that you have provided me");
+                console.log("File exists, delete existing, upload new one");
                 fs.unlink(PATH,(err) => {
                     if(err) throw err;
                 });

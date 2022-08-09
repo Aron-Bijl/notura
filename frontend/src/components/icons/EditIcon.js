@@ -17,7 +17,7 @@ const EditIcon = (props) => {
     <g id="Compose">
       <polyline strokeWidth={stroke} fill={fill} points="43,21 43,47 5,47 5,7 26,7 	"/>
       <polygon strokeWidth={stroke} fill={fill} points="27.3,32.7 19.9,38.4 21.1,29.2 32,10.2 38.2,13.8 	"/>
-      <path stroke-width={stroke} fill={fill} d="M41.2,1.5L41.2,1.5c1.7,1,2.3,3.2,1.3,4.9l-2.1,3.7l0,0l-6.2-3.6l0,0l2.2-3.8C37.3,1.1,39.5,0.5,41.2,1.5z"/>
+      <path strokeWidth={stroke} fill={fill} d="M41.2,1.5L41.2,1.5c1.7,1,2.3,3.2,1.3,4.9l-2.1,3.7l0,0l-6.2-3.6l0,0l2.2-3.8C37.3,1.1,39.5,0.5,41.2,1.5z"/>
     </g>
     </svg>
   )

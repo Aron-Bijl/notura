@@ -31,14 +31,12 @@ function NavbarUser() {
                         }))}
                     </ul>
                     <div className='search-login'>
-
                  
-
                     <div className="menu-icon" onClick={() =>  setClick(!value)}>
                         <i className={value ? "fas fa-times" : "fas fa-bars"}></i>
                     </div>
                             {       
-                                <Link to="/profile" className="user">
+                                <Link to={`/profile/${userInfo._id}`} className="user">
                                     <div className="avatar">
                                             <img className="rounded-circle" src={userInfo.imgAuthor} alt={userInfo.name} />
                                             {/* <p>{userInfo.name}</p> */}

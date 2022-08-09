@@ -45,7 +45,14 @@ function App() {
           <Route path="/recipe/:slug" element={<RecipeScreen/>} />
           <Route path="/login" element={<SigninScreen/>} />
           <Route path="/register" element={<RegisterScreen/>} />
-          <Route path="/profile" element={<ProfileScreen/>} />
+          <Route
+            path="/profile/:id"
+            element={
+              <UserRoute>
+                <ProfileScreen/>
+              </UserRoute>
+            }
+          ></Route>
           <Route path="/" element={<HomeScreen/>} />
           <Route path="/recipe/category/:category" element={<PopCatRecipeCards/>} />
           <Route
