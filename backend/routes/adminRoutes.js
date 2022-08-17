@@ -36,8 +36,8 @@ adminRouter.get(
 
 /* const __dirname = path.resolve(); */
 
-//const __dirname = "../";
-const __dirname = "/root";
+const __dirname = "../";
+//const __dirname = "/root";
 
 const DB_NAME = "notura-db";
 
@@ -85,8 +85,8 @@ adminRouter.get(
 );
 
 import fs from "fs";
-//const DIRECTORY_PATH = path.join(__dirname, "./backups"); 
-const DIRECTORY_PATH = path.join(__dirname, "./notura/backups");
+const DIRECTORY_PATH = path.join(__dirname, "./backups"); 
+//const DIRECTORY_PATH = path.join(__dirname, "./notura/backups");
 
 
 function getLatestFile(dirpath) {
@@ -119,8 +119,8 @@ function getLatestFile(dirpath) {
   }
 
 let RESTORE_FILE_NAME = getLatestFile(DIRECTORY_PATH);
-//let RESTORE_PATH = path.join(__dirname, "backups", RESTORE_FILE_NAME);
-let RESTORE_PATH = path.join(__dirname, "./notura/backups", RESTORE_FILE_NAME);
+let RESTORE_PATH = path.join(__dirname, "backups", RESTORE_FILE_NAME);
+//let RESTORE_PATH = path.join(__dirname, "./notura/backups", RESTORE_FILE_NAME);
 
 const collection = "*";
 
