@@ -119,8 +119,8 @@ function getLatestFile(dirpath) {
   }
 
 let RESTORE_FILE_NAME = getLatestFile(DIRECTORY_PATH);
-//let RESTORE_PATH = path.join(__dirname, "backups", RESTORE_FILE_NAME);
-let RESTORE_PATH = path.join(__dirname, "./notura/backups", RESTORE_FILE_NAME);
+let RESTORE_PATH = path.join(__dirname, "backups", RESTORE_FILE_NAME);
+//let RESTORE_PATH = path.join(__dirname, "./notura/backups", RESTORE_FILE_NAME);
 
 const collection = "*";
 
