@@ -41,8 +41,8 @@ const __dirname = "../";
 
 const DB_NAME = "notura-db";
 
-const ARCHIVE_PATH = path.join(__dirname, "./backups", `${DB_NAME + "-" + Date.now()}.gz`);
-//const ARCHIVE_PATH = path.join(__dirname, "./notura/backups", `${DB_NAME + "-" + Date.now()}.gz`);
+//const ARCHIVE_PATH = path.join(__dirname, "./backups", `${DB_NAME + "-" + Date.now()}.gz`);
+const ARCHIVE_PATH = path.join(__dirname, "./notura/backups", `${DB_NAME + "-" + Date.now()}.gz`);
 
 //mongodump --uri="mongodb://localhost:27017"  --db="notura-recipies" --out=/Users/aron/Desktop/code/backups/ -v
 //mongodump --uri="mongodb://localhost:27017"  --db="notura-recipies" --gzip --archive=/Users/aron/Desktop/code/backups/notura-db.gz
@@ -85,8 +85,8 @@ adminRouter.get(
 );
 
 import fs from "fs";
-const DIRECTORY_PATH = path.join(__dirname, "./backups"); 
-//const DIRECTORY_PATH = path.join(__dirname, "./notura/backups");
+//const DIRECTORY_PATH = path.join(__dirname, "./backups"); 
+const DIRECTORY_PATH = path.join(__dirname, "./notura/backups");
 
 
 function getLatestFile(dirpath) {
@@ -119,8 +119,8 @@ function getLatestFile(dirpath) {
   }
 
 let RESTORE_FILE_NAME = getLatestFile(DIRECTORY_PATH);
-let RESTORE_PATH = path.join(__dirname, "backups", RESTORE_FILE_NAME);
-//let RESTORE_PATH = path.join(__dirname, "./notura/backups", RESTORE_FILE_NAME);
+//let RESTORE_PATH = path.join(__dirname, "backups", RESTORE_FILE_NAME);
+let RESTORE_PATH = path.join(__dirname, "./notura/backups", RESTORE_FILE_NAME);
 
 const collection = "*";
 

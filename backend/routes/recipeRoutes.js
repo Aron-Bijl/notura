@@ -32,9 +32,9 @@ recipeRouter.post(
             imgAuthor: "/images/avatars/Avatar-62dc7badd3baf2dea27ad6bb.jpeg",
             prepTime: 25,
             hardness: "Simple",
-            origin: "Country",
-            allergies: ["Sample"],
-            diet: "Sample",
+            origin: "-",
+            allergies: ["-"],
+            diet: "-",
             coverImg: "/images/covers/Cover-62dcf418594615c1cd0c0282.jpeg",
             description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             servings: 0,
@@ -77,14 +77,9 @@ recipeRouter.post(
             ],
             nutritionFacts: [
                 {
-                    nutrition: "Diam",
-                    amount: 22.3,
-                    unit: "g"
-                },
-                {
-                    nutrition: "Dignissim",
-                    amount: 10.7,
-                    unit: "g"
+                    nutrition: "Calories",
+                    amount: 0,
+                    unit: " "
                 },
             ],
             likes: 0

@@ -93,7 +93,7 @@ export default function RecipeListScreen(){
                 dispatch({ type: 'FETCH_SUCCES', payload: data });
             }
             catch(err){
-                toast.error(getError(err));
+                toast.error(<p>getError(err)</p>);
             }
         }
         if(successDelete){

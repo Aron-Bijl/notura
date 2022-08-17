@@ -61,7 +61,7 @@
   }
   
   .title-height{
-    min-height: 5.5rem;
+    min-height: 6rem;
   }
   
   a {
@@ -1153,11 +1153,20 @@
   
   .checkbox-container{
     font-size: 3rem;
-    display: flex;
     color: #1E1E1D;
     display: flex;
-    margin-bottom: 1rem;
+    flex-direction: column;
+    margin-bottom: 3rem;
   }
+
+  .checkbox-container-checkbox{
+    font-size: 3rem;
+    color: #1E1E1D;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3rem;
+  }
+  
   
   
   input[type="checkbox"] {

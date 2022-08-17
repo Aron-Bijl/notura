@@ -13,8 +13,8 @@ const hardnessLevel = ["Simple", "Normal", "Hard", "Extreme"];
 const possibleAllergies = ["Wheat", "Dairy", "Tree nuts", "Peanuts", "Shellfish", "Soy", "Fish", "Sugar", "Mustard seeds", "Sesame seeds", "Linseed", "Aniseed", "Peach", "Banana", "Avocado", "Kiwi fruit", "Passion fruit", "Celery", "Garlic", "Chamomile"];
 //https://www.healthline.com/nutrition/common-food-allergies#other-common-food-allergies
 const possibleDiet = ["Vegan", "Vegaterian", "Paleo", "Keto", "Low Carb", "High Carb", "Fruitarian", "High Protein", "Mediterranean", "Carnivore"];
-const units = ["drops", "pinch", "g", "mg", "Kg ", "ml", "L", "tbsp", "tsp", "pieces"];
-const nutritions = ["Calories", "Total Fat", "Saturated Fat", "Unsaturated Fat", "Cholesterol", "Fiber", "Sodium", "Magnesium", "Calcium", "Potassium", "Total Carbohydrate", "Salts", "Sugars", "Proteins", "Vitamin A" , "Vitamin B", "Vitamin C", "Vitamin D", "Vitamin K" ];
+const units = ["drop", "pinch", "g", "mg", "Kg ", "ml", "L", "tbsp", "tsp", "cup", "cal", " "];
+const nutritions = ["Calories", "Total Fat", "Saturated Fat", "Unsaturated Fat", "Cholesterol", "Fiber", "Sodium", "Magnesium", "Calcium", "Potassium", "Total Carbohydrate", "Salts", "Sugars", "Proteins", "Vitamin A" , "Vitamin B", "Vitamin C", "Vitamin D", "Vitamin K", "Iron", "Folate", "Thiamin" ];
 //https://www.healthline.com/health/food-nutrition
 //https://www.calorieking.com/us/en/foods/
 
@@ -238,6 +238,8 @@ export default function ProductEditScreen () {
                 headers: { Authorization: `Bearer ${userInfo.token}` }
             }
         );
+
+        window.location.reload();
     } 
 
     const submitHandler = async (e) => {
@@ -313,8 +315,6 @@ export default function ProductEditScreen () {
 
         setCheckedState(updatedCheckedState);
     }
-
-
     
     const onIngredientChange = (index, event) => {
         let newIngredients = [...ingredients];
@@ -409,10 +409,10 @@ export default function ProductEditScreen () {
         setIngriedients(newField);
     }
 
-    const onInstructionChange = (index, event) => {
+    const onInstructionChange = index => e => {
         let instruction = [...instructions];
-        instruction[index] = event.target.value;
-        setInstructions(instruction);
+        instruction[index] = e.target.value;
+        setInstructions(instruction); 
     }
 
 
@@ -568,7 +568,7 @@ export default function ProductEditScreen () {
                                     <label className="drop-down-label " htmlFor="alergies">Alergies</label>
                                     {possibleAllergies.map((val, index) => {
                                             return (
-                                                <div key={"alergies-" + index} className="checkbox-container" >
+                                                <div key={"alergies-" + index} className="checkbox-container-checkbox" >
                                                     <label className="checkbox-label" name={val}>{val}
                                                             <input type="checkbox" onChange={e => {handleCheck(e, index)}} value={val} checked={checkedState[index]}/> 
                                                             <span className={`checkbox ${checkedState[index] ? "checkbox-active" : ""}`} aria-hidden="true"></span>
@@ -657,7 +657,7 @@ export default function ProductEditScreen () {
                                 <h4 className="pb-4">Instructions</h4>
                                   {instructions.map((val, index) => {
                                             return (
-                                                <React.Fragment key={"instruction" + val}>
+                                                <React.Fragment key={"instruction" + index}>
                                                  <div className="checkbox-container">
                                                     <textarea 
                                                         key={"instruction"-index}
@@ -665,7 +665,7 @@ export default function ProductEditScreen () {
                                                         placeholder={val}
                                                         className="form-control"
                                                         value={val}
-                                                        onChange={ event => onInstructionChange(index, event)}
+                                                        onChange={onInstructionChange(index) }
                                                         type="text"
                                                         rows="3"
                                                     />
